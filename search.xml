@@ -17,11 +17,11 @@
 
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 ]]></content>
-      <categories>
-        <category>hexo</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-      </tags>
+  </entry>
+  <entry>
+    <title>我的第一篇博客</title>
+    <url>/2019/12/24/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</url>
+    <content><![CDATA[<h2 id="Just-for-test"><a href="#Just-for-test" class="headerlink" title="Just for test"></a>Just for test</h2><p>2019年12月24日，我的Hexo博客搭建好了，接下来就是好好学习了不断记录新知识了，哈哈哈。。。。。。Markdown还不会呢</p>
+]]></content>
   </entry>
 </search>
