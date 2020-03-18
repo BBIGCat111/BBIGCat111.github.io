@@ -27,8 +27,7 @@
 <blockquote>
 <p>#define LED0 PBout(5) <strong>// LED0连接GPIOB.5口，LED0 = 0表示LED0输出0，LED0 = 1表示LED0输出1</strong><br>#define LED1 PEout(5) <strong>// LED1连接GPIOE.5口，LED1 = 0表示LED0输出0，LED1 = 1表示LED0输出1</strong></p>
 </blockquote>
-<p>###2、串口初始化</p>
-<p><strong>首先对串口接收端和输出端对应的IO口进行初始化和参数配置，与配置GPIO口步骤相同,Tx口Mode复用推挽输出，Rx口Mode复用浮空输入</strong></p>
+<h2 id="2、串口初始化"><a href="#2、串口初始化" class="headerlink" title="2、串口初始化"></a>2、串口初始化</h2><p><strong>首先对串口接收端和输出端对应的IO口进行初始化和参数配置，与配置GPIO口步骤相同,Tx口Mode复用推挽输出，Rx口Mode复用浮空输入</strong></p>
 <blockquote>
 <p>GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;  <strong>//复用推挽输出</strong><br>GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING; <strong>//复用浮空输入</strong></p>
 </blockquote>
@@ -48,8 +47,7 @@
 <blockquote>
 <p>USART_Cmd(USART1, ENABLE); <strong>//使能串口</strong></p>
 </blockquote>
-<p>###3、外部中断初始化</p>
-<p><strong>在主函数中设置NVIC中断分组</strong></p>
+<h2 id="3、外部中断初始化"><a href="#3、外部中断初始化" class="headerlink" title="3、外部中断初始化"></a>3、外部中断初始化</h2><p><strong>在主函数中设置NVIC中断分组</strong></p>
 <blockquote>
 <p>NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);   <strong>//设置NVIC中断分组2</strong></p>
 </blockquote>
@@ -85,8 +83,7 @@
 <blockquote>
 <p>EXTI_ClearITPendingBit(EXTI_Line2);   <strong>//清除LINE2上的中断标志位</strong></p>
 </blockquote>
-<p>###4、看门狗</p>
-<p><strong>看门狗是一个检测cpu是否跑死的装置，相当于一个定时器，需要在它计数完成溢出之前不停给它重新置数，当cpu正常运行的时候，可以一直填充计数值，系统会保持正常运行，一旦cpu进入死循环或跑飞，就不会给看门狗喂食(即不会填充看门狗计数值)，一旦计时完成，看门狗就会发送复位信号，使系统复位，跑飞的系统就会复位重新开始.由于是内部时钟，所以时钟不是精确的</strong></p>
+<h2 id="4、看门狗"><a href="#4、看门狗" class="headerlink" title="4、看门狗"></a>4、看门狗</h2><p><strong>看门狗是一个检测cpu是否跑死的装置，相当于一个定时器，需要在它计数完成溢出之前不停给它重新置数，当cpu正常运行的时候，可以一直填充计数值，系统会保持正常运行，一旦cpu进入死循环或跑飞，就不会给看门狗喂食(即不会填充看门狗计数值)，一旦计时完成，看门狗就会发送复位信号，使系统复位，跑飞的系统就会复位重新开始.由于是内部时钟，所以时钟不是精确的</strong></p>
 <p><strong>第一步、取消寄存器写保护（向 IWDG_KR 写入 0X5555），通过这步，取消 IWDG_PR 和 IWDG_RLR 的写保护，使后面可以操作这两个寄存器,设置 IWDG_PR 和 IWDG_RLR 的值，调用的函数为</strong></p>
 <blockquote>
 <p>IWDG_WriteAccessCmd(IWDG_WriteAccess_Enable); <strong>//开启/取消写保护</strong></p>
@@ -109,8 +106,187 @@
 <blockquote>
 <p>IWDG_ReloadCounter();         <strong>//reload</strong></p>
 </blockquote>
-<p>###5、定时器中断初始化</p>
-<p><strong>以TIM3为例</strong></p>
+<h2 id="5、定时器中断初始化"><a href="#5、定时器中断初始化" class="headerlink" title="5、定时器中断初始化"></a>5、定时器中断初始化</h2><p><strong>以TIM3为例</strong></p>
+<p><strong>首先创建定时器初始化结构体对象</strong></p>
+<blockquote>
+<p>TIM_TimeBaseInitTypeDef TIM_TimeBaseStructure;   <strong>//创建定时器初始化结构体对象</strong></p>
+</blockquote>
+<p><strong>然后对TIM3进行时钟使能，TIM3是挂载在APB1之下，所以通过APB1总线下的使能使能函数来使能TIM3</strong></p>
+<blockquote>
+<p>RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM3, ENABLE);   <strong>//时钟TIM3使能</strong></p>
+</blockquote>
+<p><strong>进行初始化定时器参数,设置自动重装值，分频系数，始终分割，计数方式等</strong></p>
+<blockquote>
+<p>TIM_TimeBaseStructure.TIM_Period = arr;    <strong>//设置自动重装载寄存器周期的值</strong><br>TIM_TimeBaseStructure.TIM_Prescaler = psc;     <strong>//设置时钟频率除数的预分频值</strong><br>TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1;  <strong>//设置时钟分割</strong><br>TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up; <strong>//TIM向上计数</strong></p>
+</blockquote>
+<p><strong>当APB1的时钟分频数为1的时候，TIM2<del>7的时钟为APB1的时钟，而如果APB1的时钟分频数不为 1，那么TIM2</del>7的时钟频率将为APB1时钟的两倍。因此，TIM3的时钟为72M，再根据我们设计的arr和psc的值，就可以计算中断时间了</strong></p>
+<p><strong>公式为Tout= ((arr+1)*(psc+1))/Tclk</strong></p>
+<p><strong>Tclk：TIM3 的输入时钟频率(单位为Mhz)</strong><br><strong>Tout：TIM3 溢出时间(单位为us)</strong></p>
+<p><strong>接下来初始化TIM3</strong></p>
+<blockquote>
+<p>TIM_TimeBaseInit(TIM3, &amp;TIM_TimeBaseStructure);  <strong>//初始化TIM3</strong></p>
+</blockquote>
+<p><strong>再利用TIM_ITConfig()函数允许TIM3更新中断</strong></p>
+<blockquote>
+<p>TIM_ITConfig(TIM3, TIM_IT_Update, ENABLE);     <strong>//允许TIM3(更新)中断</strong></p>
+</blockquote>
+<p><strong>接下来利用NVIC结构体对象对中断优先级进行参数设置</strong></p>
+<p><strong>完成之后TIM_Cmd()函数使能TIM3</strong></p>
+<blockquote>
+<p>TIM_Cmd(TIM3, ENABLE);  <strong>//使能TIM3</strong></p>
+</blockquote>
+<p><strong>在定时器3中断服务程序中，先利用TIM_GetITStatus()函数检查中断发生与否</strong> </p>
+<blockquote>
+<p>if(TIM_GetITStatus(TIM3, TIM_IT_Update) != RESET) <strong>//检查TIM3更新中断发生与否</strong></p>
+</blockquote>
+<p><strong>最后利用TIM_ClearITPendingBit()函数清除TIM3更新中断标志</strong></p>
+<blockquote>
+<p>TIM_ClearITPendingBit(TIM3, TIM_IT_Update);   <strong>//清除TIM3更新中断标志</strong></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>STM32</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>stm32学习记录</title>
+    <url>/2019/12/29/2%E3%80%81%E4%B8%B2%E5%8F%A3%E5%88%9D%E5%A7%8B%E5%8C%96/</url>
+    <content><![CDATA[<h1 id="STM32学习过程记录"><a href="#STM32学习过程记录" class="headerlink" title="STM32学习过程记录"></a>STM32学习过程记录</h1><h2 id="2、串口初始化"><a href="#2、串口初始化" class="headerlink" title="2、串口初始化"></a>2、串口初始化</h2><p><strong>首先对串口接收端和输出端对应的IO口进行初始化和参数配置，与配置GPIO口步骤相同,Tx口Mode复用推挽输出，Rx口Mode复用浮空输入</strong></p>
+<blockquote>
+<p>GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;  <strong>//复用推挽输出</strong><br>GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING; <strong>//复用浮空输入</strong></p>
+</blockquote>
+<p><strong>然后创建一个串口结构体对象</strong></p>
+<blockquote>
+<p>USART_InitTypeDef USART_InitStructure;</p>
+</blockquote>
+<p><strong>设置串口结构体对象的参数，包括6个，分别是波特率、字长、停止位位数、奇偶校验位、有无硬件数据控制流和收发模式</strong></p>
+<blockquote>
+<p>USART_InitStructure.USART_BaudRate = bound; <strong>//波特率设置</strong><br> USART_InitStructure.USART_WordLength = USART_WordLength_8b; <strong>//字长为 8 位</strong><br> USART_InitStructure.USART_StopBits = USART_StopBits_1; <strong>//一个停止位</strong><br> USART_InitStructure.USART_Parity = USART_Parity_No; <strong>//无奇偶校验位</strong><br> USART_InitStructure.USART_HardwareFlowControl =<br> USART_HardwareFlowControl_None; <strong>*//无硬件数据流控制</strong><br> USART_InitStructure.USART_Mode = USART_Mode_Rx | USART_Mode_Tx; <strong>//收发模式</strong></p>
+</blockquote>
+<p> <strong>接下来对串口对象进行初始化设置</strong></p>
+<blockquote>
+<p>USART_Init(USART1, &amp;USART_InitStructure); <strong>//初始化串口</strong></p>
+</blockquote>
+<p> <strong>最后使能串口</strong></p>
+<blockquote>
+<p>USART_Cmd(USART1, ENABLE); <strong>//使能串口</strong></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>STM32</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>stm32学习记录</title>
+    <url>/2019/12/29/3%E3%80%81%E5%A4%96%E9%83%A8%E4%B8%AD%E6%96%AD%E5%88%9D%E5%A7%8B%E5%8C%96/</url>
+    <content><![CDATA[<h1 id="STM32学习过程记录"><a href="#STM32学习过程记录" class="headerlink" title="STM32学习过程记录"></a>STM32学习过程记录</h1><h2 id="3、外部中断初始化"><a href="#3、外部中断初始化" class="headerlink" title="3、外部中断初始化"></a>3、外部中断初始化</h2><p><strong>在主函数中设置NVIC中断分组</strong></p>
+<blockquote>
+<p>NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);   <strong>//设置NVIC中断分组2</strong></p>
+</blockquote>
+<p><strong>创建GPIO口结构体对象，使能时钟并且配置属性，接VCC的设置输入下拉，接GND的设置输入上拉</strong></p>
+<blockquote>
+<p>GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;    <strong>//设置成输入上拉</strong><br>GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPD;    <strong>//设置成输入下拉</strong></p>
+</blockquote>
+<p><strong>然后再创建外部中断结构体对象</strong></p>
+<blockquote>
+<p>EXTI_InitTypeDef EXTI_InitStructure;   <strong>//创建外部中断结构体对象</strong></p>
+</blockquote>
+<p><strong>开启AFIO时钟，使能复用时钟功能</strong></p>
+<blockquote>
+<p>RCC_APB2PeriphClockCmd(RCC_APB2Periph_AFIO, ENABLE);  <strong>//开启AFIO时钟，使能复用时钟功能</strong></p>
+</blockquote>
+<p><strong>接下来对每一个需要用到的外部中断进行IO口中断线配置以及中断初始化配置,外部中断0-15对应GPIOA-E的0~15IO口，以外部中断2举例</strong></p>
+<blockquote>
+<p>GPIO_EXTILineConfig(GPIO_PortSourceGPIOE, GPIO_PinSource2);  <strong>// GPIOE.2中断线配置</strong><br>EXTI_InitStructure.EXTI_Line = EXTI_Line2;<br>EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;<br>EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Falling;  <strong>//下降沿触发</strong><br>EXTI_InitStructure.EXTI_LineCmd = ENABLE;    <strong>//使能</strong><br>EXTI_Init(&amp;EXTI_InitStructure);</p>
+</blockquote>
+<p><strong>配置完外部中断初始化参数设置之后,再创建NVIC结构体对象</strong></p>
+<blockquote>
+<p>NVIC_InitTypeDef NVIC_InitStructure;   <strong>//创建中断优先级结构体对象</strong></p>
+</blockquote>
+<p><strong>利用NVIC结构体对象对外部中断进行优先级参数设置</strong></p>
+<blockquote>
+<p>NVIC_InitStructure.NVIC_IRQChannel = EXTI2_IRQn; <strong>//使能KEY2所在的外部中断通道</strong><br>NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x02; <strong>//抢占优先级设置为2</strong><br>NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x02; <strong>//子优先级设置为2</strong><br>NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;  <strong>//使能外部中断通道</strong><br>NVIC_Init(&amp;NVIC_InitStructure);</p>
+</blockquote>
+<p><strong>设置完外部中断之后进行外部中断服务函数设计</strong></p>
+<blockquote>
+<p>void EXTI2_IRQHandler(void)  <strong>//外部中断2服务函数</strong></p>
+</blockquote>
+<p><strong>在中断服务函数的末尾清除外部中断服务标志</strong></p>
+<blockquote>
+<p>EXTI_ClearITPendingBit(EXTI_Line2);   <strong>//清除LINE2上的中断标志位</strong></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>STM32</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>stm32学习记录</title>
+    <url>/2019/12/29/1%E3%80%81GPIO%E5%88%9D%E5%A7%8B%E5%8C%96/</url>
+    <content><![CDATA[<h1 id="STM32学习过程记录"><a href="#STM32学习过程记录" class="headerlink" title="STM32学习过程记录"></a>STM32学习过程记录</h1><h2 id="1、GPIO口初始化"><a href="#1、GPIO口初始化" class="headerlink" title="1、GPIO口初始化"></a>1、GPIO口初始化</h2><p><strong>首先要创建一个GPIO初始化结构体的对象，结构体的定义类型是GPIO_InitTypeDef</strong></p>
+<blockquote>
+<p>GPIO_InitTypeDef  GPIO_InitStructure;</p>
+</blockquote>
+<p><strong>然后对IO口进行时钟使能，其中一个函数是RCC_APB2PeriphClockCmd()函数</strong></p>
+<blockquote>
+<p>RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE); <strong>//使能PB端口时钟</strong></p>
+</blockquote>
+<p><strong>接下来是对GPIO结构体对象进行参数设置，结构体包含3个参数，分别是Pin、Mode、和Speed</strong></p>
+<blockquote>
+<p>GPIO_InitStructure.GPIO_Pin = GPIO_Pin_5; <strong>//LED0–&gt;PB.5 推挽输出</strong><br>GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP; <strong>//推挽输出</strong><br>GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz; <strong>//速度设置为50MHz</strong></p>
+</blockquote>
+<p><strong>设置完参数之后，利用GPIO_Init()函数对某个结构体对象进行初始化，并且对IO口置1或清0</strong></p>
+<blockquote>
+<p>GPIO_Init(GPIOB, &amp;GPIO_InitStructure);<br>GPIO_SetBits(GPIOB,GPIO_Pin_5); <strong>//PB5输出高</strong></p>
+</blockquote>
+<p><strong>IO口输出方法</strong><br><strong>1、调用GPIO_SetBits()函数输出1，调用GPIO_ResetBits()函数输出0</strong></p>
+<blockquote>
+<p>GPIO_SetBits(GPIOB, GPIO_Pin_5);  <strong>// GPIOE.5输出1</strong><br>GPIO_ResetBits (GPIOB, GPIO_Pin_5);  <strong>// GPIOB.5输出0</strong></p>
+</blockquote>
+<p><strong>2、宏定义</strong></p>
+<blockquote>
+<p>#define LED0 PBout(5) <strong>// LED0连接GPIOB.5口，LED0 = 0表示LED0输出0，LED0 = 1表示LED0输出1</strong><br>#define LED1 PEout(5) <strong>// LED1连接GPIOE.5口，LED1 = 0表示LED0输出0，LED1 = 1表示LED0输出1</strong></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>STM32</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>stm32学习记录</title>
+    <url>/2019/12/29/4%E3%80%81%E4%B8%B2%E9%97%A8%E7%8B%97/</url>
+    <content><![CDATA[<h1 id="STM32学习过程记录"><a href="#STM32学习过程记录" class="headerlink" title="STM32学习过程记录"></a>STM32学习过程记录</h1><h2 id="4、看门狗"><a href="#4、看门狗" class="headerlink" title="4、看门狗"></a>4、看门狗</h2><p><strong>看门狗是一个检测cpu是否跑死的装置，相当于一个定时器，需要在它计数完成溢出之前不停给它重新置数，当cpu正常运行的时候，可以一直填充计数值，系统会保持正常运行，一旦cpu进入死循环或跑飞，就不会给看门狗喂食(即不会填充看门狗计数值)，一旦计时完成，看门狗就会发送复位信号，使系统复位，跑飞的系统就会复位重新开始.由于是内部时钟，所以时钟不是精确的</strong></p>
+<p><strong>第一步、取消寄存器写保护（向 IWDG_KR 写入 0X5555），通过这步，取消 IWDG_PR 和 IWDG_RLR 的写保护，使后面可以操作这两个寄存器,设置 IWDG_PR 和 IWDG_RLR 的值，调用的函数为</strong></p>
+<blockquote>
+<p>IWDG_WriteAccessCmd(IWDG_WriteAccess_Enable); <strong>//开启/取消写保护</strong></p>
+</blockquote>
+<p><strong>第二步、设置独立看门狗的预分频数和重装载值</strong></p>
+<blockquote>
+<p>void IWDG_SetPrescaler(uint8_t IWDG_Prescaler); <strong>//设置IWDG预分频值prep</strong><br>void IWDG_SetReload(uint16_t Reload); <strong>//设置IWDG重装载值rlr</strong></p>
+</blockquote>
+<p><strong>看门狗喂狗时间计算方法 Tout=((4× 2^prer) × rlr) /40 (ms)</strong></p>
+<p><strong>其中 Tout 为看门狗溢出时间（单位为 ms）； prer 为看门狗时钟预分频值（IWDG_PR 值），范围为 0~7； rlr 为看门狗的重装载值（IWDG_RLR 的值）</strong></p>
+<p><strong>第三步、重载计数值喂狗（向 IWDG_KR 写入 0XAAAA）</strong></p>
+<blockquote>
+<p>IWDG_ReloadCounter(); <strong>//按照IWDG重装载寄存器的值重装载IWDG计数器</strong></p>
+</blockquote>
+<p><strong>第四步、启动看门狗(向 IWDG_KR 写入 0XCCCC)</strong></p>
+<blockquote>
+<p>IWDG_Enable();  <strong>//使能 IWDG</strong></p>
+</blockquote>
+<p><strong>在主函数中或者中断服务程序中需要不断重载技术值以防止看门狗发送复位信号</strong></p>
+<blockquote>
+<p>IWDG_ReloadCounter();         <strong>//reload</strong></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>STM32</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>stm32学习记录</title>
+    <url>/2019/12/29/5%E3%80%81%E5%AE%9A%E6%97%B6%E5%99%A8%E4%B8%AD%E6%96%AD%E5%88%9D%E5%A7%8B%E5%8C%96/</url>
+    <content><![CDATA[<h1 id="STM32学习过程记录"><a href="#STM32学习过程记录" class="headerlink" title="STM32学习过程记录"></a>STM32学习过程记录</h1><h2 id="5、定时器中断初始化"><a href="#5、定时器中断初始化" class="headerlink" title="5、定时器中断初始化"></a>5、定时器中断初始化</h2><p><strong>以TIM3为例</strong></p>
 <p><strong>首先创建定时器初始化结构体对象</strong></p>
 <blockquote>
 <p>TIM_TimeBaseInitTypeDef TIM_TimeBaseStructure;   <strong>//创建定时器初始化结构体对象</strong></p>

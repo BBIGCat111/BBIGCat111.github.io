@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="Bbigcat111 Blog">
 <meta property="og:description" content="STM32学习过程记录1、GPIO口初始化首先要创建一个GPIO初始化结构体的对象，结构体的定义类型是GPIO_InitTypeDef  GPIO_InitTypeDef  GPIO_InitStructure;  然后对IO口进行时钟使能，其中一个函数是RCC_APB2PeriphClockCmd()函数  RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB,">
 <meta property="article:published_time" content="2019-12-29T12:46:46.000Z">
-<meta property="article:modified_time" content="2020-03-18T09:27:39.615Z">
+<meta property="article:modified_time" content="2020-03-18T14:05:34.090Z">
 <meta property="article:author" content="LiWeiAn">
 <meta name="twitter:card" content="summary">
 
@@ -378,8 +378,7 @@
 <blockquote>
 <p>#define LED0 PBout(5) <strong>// LED0连接GPIOB.5口，LED0 = 0表示LED0输出0，LED0 = 1表示LED0输出1</strong><br>#define LED1 PEout(5) <strong>// LED1连接GPIOE.5口，LED1 = 0表示LED0输出0，LED1 = 1表示LED0输出1</strong></p>
 </blockquote>
-<p>###2、串口初始化</p>
-<p><strong>首先对串口接收端和输出端对应的IO口进行初始化和参数配置，与配置GPIO口步骤相同,Tx口Mode复用推挽输出，Rx口Mode复用浮空输入</strong></p>
+<h2 id="2、串口初始化"><a href="#2、串口初始化" class="headerlink" title="2、串口初始化"></a>2、串口初始化</h2><p><strong>首先对串口接收端和输出端对应的IO口进行初始化和参数配置，与配置GPIO口步骤相同,Tx口Mode复用推挽输出，Rx口Mode复用浮空输入</strong></p>
 <blockquote>
 <p>GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;  <strong>//复用推挽输出</strong><br>GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING; <strong>//复用浮空输入</strong></p>
 </blockquote>
@@ -399,8 +398,7 @@
 <blockquote>
 <p>USART_Cmd(USART1, ENABLE); <strong>//使能串口</strong></p>
 </blockquote>
-<p>###3、外部中断初始化</p>
-<p><strong>在主函数中设置NVIC中断分组</strong></p>
+<h2 id="3、外部中断初始化"><a href="#3、外部中断初始化" class="headerlink" title="3、外部中断初始化"></a>3、外部中断初始化</h2><p><strong>在主函数中设置NVIC中断分组</strong></p>
 <blockquote>
 <p>NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);   <strong>//设置NVIC中断分组2</strong></p>
 </blockquote>
@@ -436,8 +434,7 @@
 <blockquote>
 <p>EXTI_ClearITPendingBit(EXTI_Line2);   <strong>//清除LINE2上的中断标志位</strong></p>
 </blockquote>
-<p>###4、看门狗</p>
-<p><strong>看门狗是一个检测cpu是否跑死的装置，相当于一个定时器，需要在它计数完成溢出之前不停给它重新置数，当cpu正常运行的时候，可以一直填充计数值，系统会保持正常运行，一旦cpu进入死循环或跑飞，就不会给看门狗喂食(即不会填充看门狗计数值)，一旦计时完成，看门狗就会发送复位信号，使系统复位，跑飞的系统就会复位重新开始.由于是内部时钟，所以时钟不是精确的</strong></p>
+<h2 id="4、看门狗"><a href="#4、看门狗" class="headerlink" title="4、看门狗"></a>4、看门狗</h2><p><strong>看门狗是一个检测cpu是否跑死的装置，相当于一个定时器，需要在它计数完成溢出之前不停给它重新置数，当cpu正常运行的时候，可以一直填充计数值，系统会保持正常运行，一旦cpu进入死循环或跑飞，就不会给看门狗喂食(即不会填充看门狗计数值)，一旦计时完成，看门狗就会发送复位信号，使系统复位，跑飞的系统就会复位重新开始.由于是内部时钟，所以时钟不是精确的</strong></p>
 <p><strong>第一步、取消寄存器写保护（向 IWDG_KR 写入 0X5555），通过这步，取消 IWDG_PR 和 IWDG_RLR 的写保护，使后面可以操作这两个寄存器,设置 IWDG_PR 和 IWDG_RLR 的值，调用的函数为</strong></p>
 <blockquote>
 <p>IWDG_WriteAccessCmd(IWDG_WriteAccess_Enable); <strong>//开启/取消写保护</strong></p>
@@ -460,8 +457,7 @@
 <blockquote>
 <p>IWDG_ReloadCounter();         <strong>//reload</strong></p>
 </blockquote>
-<p>###5、定时器中断初始化</p>
-<p><strong>以TIM3为例</strong></p>
+<h2 id="5、定时器中断初始化"><a href="#5、定时器中断初始化" class="headerlink" title="5、定时器中断初始化"></a>5、定时器中断初始化</h2><p><strong>以TIM3为例</strong></p>
 <p><strong>首先创建定时器初始化结构体对象</strong></p>
 <blockquote>
 <p>TIM_TimeBaseInitTypeDef TIM_TimeBaseStructure;   <strong>//创建定时器初始化结构体对象</strong></p>
@@ -522,8 +518,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/12/24/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/" rel="next" title="我的第一篇博客">
-                <i class="fa fa-chevron-left"></i> 我的第一篇博客
+              <a href="/2019/12/29/2%E3%80%81%E4%B8%B2%E5%8F%A3%E5%88%9D%E5%A7%8B%E5%8C%96/" rel="next" title="stm32学习记录">
+                <i class="fa fa-chevron-left"></i> stm32学习记录
               </a>
             
           </div>
@@ -611,7 +607,7 @@
               
                 <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -657,7 +653,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#STM32学习过程记录"><span class="nav-number">1.</span> <span class="nav-text">STM32学习过程记录</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、GPIO口初始化"><span class="nav-number">1.1.</span> <span class="nav-text">1、GPIO口初始化</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#STM32学习过程记录"><span class="nav-number">1.</span> <span class="nav-text">STM32学习过程记录</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、GPIO口初始化"><span class="nav-number">1.1.</span> <span class="nav-text">1、GPIO口初始化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、串口初始化"><span class="nav-number">1.2.</span> <span class="nav-text">2、串口初始化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、外部中断初始化"><span class="nav-number">1.3.</span> <span class="nav-text">3、外部中断初始化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、看门狗"><span class="nav-number">1.4.</span> <span class="nav-text">4、看门狗</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5、定时器中断初始化"><span class="nav-number">1.5.</span> <span class="nav-text">5、定时器中断初始化</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -702,7 +698,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共1.8k字</span>
+  <span class="post-count">博客全站共3.5k字</span>
 </div>
         
 
