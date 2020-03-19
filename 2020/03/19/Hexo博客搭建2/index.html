@@ -90,9 +90,10 @@
 <meta property="og:image" content="http://yoursite.com/2020/03/19/Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA2/3.jpg">
 <meta property="og:image" content="http://yoursite.com/2020/03/19/Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA2/4.jpg">
 <meta property="og:image" content="http://yoursite.com/2020/03/19/Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA2/5.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/03/19/Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA2/7.jpg">
 <meta property="og:image" content="http://yoursite.com/2020/03/19/Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA2/6.jpg">
 <meta property="article:published_time" content="2020-03-19T08:54:31.000Z">
-<meta property="article:modified_time" content="2020-03-19T11:44:44.098Z">
+<meta property="article:modified_time" content="2020-03-19T12:58:09.329Z">
 <meta property="article:author" content="LiWeiAn">
 <meta property="article:tag" content="学习">
 <meta name="twitter:card" content="summary">
@@ -416,6 +417,7 @@
 <h3 id="6、测试SSH-key是否添加成功"><a href="#6、测试SSH-key是否添加成功" class="headerlink" title="6、测试SSH key是否添加成功"></a>6、测试SSH key是否添加成功</h3><p>git bash先进入Hexo/blog目录，然后在git bash输入一条指令</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh -T git@github.com</span><br></pre></td></tr></table></figure>
 <p>然后会出现一些警告，然后需要输入yes/no，输入yes，然后需要输入刚刚设置的密码，输入后运行，若是最后提示succeeful，则表示配置成功。</p>
+<p><img src="/2020/03/19/Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA2/7.jpg" alt></p>
 <h3 id="7、部署到Github"><a href="#7、部署到Github" class="headerlink" title="7、部署到Github"></a>7、部署到Github</h3><p>在Hexo/blog目录下,依次输入</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ hexo clean</span><br><span class="line">$ hexo g           &#x2F;&#x2F;对调整生成静态页面</span><br><span class="line">$ hexo d           &#x2F;&#x2F;部署到github</span><br></pre></td></tr></table></figure>
 <p>等到命令执行完毕，若是最后出现Deploy done: git，则成功，如下图</p>
