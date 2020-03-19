@@ -1,6 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Hexo博客搭建2</title>
+    <url>/2020/03/19/Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA2/</url>
+    <content><![CDATA[<h1 id="2、部署到Github"><a href="#2、部署到Github" class="headerlink" title="2、部署到Github"></a>2、部署到Github</h1><h2 id="开始Github"><a href="#开始Github" class="headerlink" title="开始Github"></a>开始Github</h2><h3 id="1、创建Github账号"><a href="#1、创建Github账号" class="headerlink" title="1、创建Github账号"></a>1、创建Github账号</h3><p>要想部署到Github上，首先得有一个Github账号，现在前往<a href="https://github.com/" target="_blank" rel="noopener">Github官网</a>注册。</p>
+<h3 id="2、创建一个github仓库-crerate-repository"><a href="#2、创建一个github仓库-crerate-repository" class="headerlink" title="2、创建一个github仓库(crerate repository)"></a>2、创建一个github仓库(crerate repository)</h3><p>假设你的github名称是test，则这个新建仓库的名称必须是<strong>test.github.io</strong>，必须是这个名称，其他的名称无效，部署成功以后访问 <a href="http://test.github.io" target="_blank" rel="noopener">http://test.github.io</a> 即可访问博客</p>
+<h3 id="3、修改配置文件"><a href="#3、修改配置文件" class="headerlink" title="3、修改配置文件"></a>3、修改配置文件</h3><p>用软件(这里我用的是<strong>vscode</strong>)打开Hexo/blog目录下的_config.yml文件(前一章提及过)</p>
+<p><img src="/2020/03/19/Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA2/1.jpg" alt></p>
+<p>下拉找到文件的最后，找到deploy，设置deploy信息，修改为如下</p>
+<p><img src="/2020/03/19/Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA2/2.jpg" alt></p>
+<p>由于你的github名称是test，则这里repo的网址填 <a href="https://github.com/test/test.github.io" target="_blank" rel="noopener">https://github.com/test/test.github.io</a> , 如果最开始没有<strong>type</strong>、<strong>repo</strong>、<strong>branch</strong>自己补充，最终格式补充成上图中一样。</p>
+<h3 id="4、设置SSH-Key"><a href="#4、设置SSH-Key" class="headerlink" title="4、设置SSH Key"></a>4、设置SSH Key</h3><p>如果不设置SSH Key，那么每次部署到github上都需要输入账号和密码，如果设置了SSH Key就不需要了。现在git bash上输入</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ cd ~</span><br><span class="line">$ cd .ssh</span><br></pre></td></tr></table></figure>
+<p>输入这两行代码是，进入根目录看有没有.ssh文件夹，若是设置了SSH Key就会在根目录产生.ssh文件夹，若是没有设置，则没有.ssh文件夹，会报错。</p>
+<p>没有设置SSH Key，则添加一个，输入如下一条命令(如果有SSH Key跳过这一步)</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ssh-keygen -t rsa -C &quot;your_email@mail.com&quot;   #&quot;your_email@mail.com&quot; 换成创建github时的邮箱号</span><br></pre></td></tr></table></figure>
+<p>然后会提示你 Enter file in which to save the key (/c/Users/you/.ssh/id_rsa): 可以<strong>只输入回车</strong>，此时在根目录会产生一个.shh文件夹，里面有两个文件<strong>id_rsa</strong>和<strong>id_rsa.pub</strong>。</p>
+<p>回车之后,<strong>需要输入两次密码，第二次输入是确认密码</strong>(该密码是你push文件的时候要输入的密码，而不是github的密码)，该密码是隐形的，看不到。</p>
+<h3 id="5、Github设置SSH-Key"><a href="#5、Github设置SSH-Key" class="headerlink" title="5、Github设置SSH Key"></a>5、Github设置SSH Key</h3><p>登录Github，点击右上角，选择<strong>Settings</strong>，然后在新页面的左边点击<strong>SSH and GPG keys</strong>，会进入下面的页面</p>
+<p><img src="/2020/03/19/Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA2/3.jpg" alt></p>
+<p>再点击<strong>New SSH key</strong>，创建新的SSH key，点击后进入下面的页面</p>
+<p><img src="/2020/03/19/Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA2/4.jpg" alt></p>
+<p>接下来打开<strong>C盘</strong>，<strong>用户</strong>文件夹里的.ssh文件夹，我电脑中的位置如下图</p>
+<p><img src="/2020/03/19/Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA2/5.jpg" alt></p>
+<p>用<strong>记事本</strong>方式打开id_rsa.pub，复制里面的所有内容，拷贝到上图网站的key里，Title可以为空，然后点击<strong>Add SSH key</strong>以保存。</p>
+<h3 id="6、测试SSH-key是否添加成功"><a href="#6、测试SSH-key是否添加成功" class="headerlink" title="6、测试SSH key是否添加成功"></a>6、测试SSH key是否添加成功</h3><p>git bash先进入Hexo/blog目录，然后在git bash输入一条指令</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ ssh -T git@github.com</span><br></pre></td></tr></table></figure>
+<p>然后会出现一些警告，然后需要输入yes/no，输入yes，然后需要输入刚刚设置的密码，输入后运行，若是最后提示succeeful，则表示配置成功。</p>
+<h3 id="7、部署到Github"><a href="#7、部署到Github" class="headerlink" title="7、部署到Github"></a>7、部署到Github</h3><p>在Hexo/blog目录下,依次输入</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ hexo clean</span><br><span class="line">$ hexo g           &#x2F;&#x2F;对调整生成静态页面</span><br><span class="line">$ hexo d           &#x2F;&#x2F;部署到github</span><br></pre></td></tr></table></figure>
+<p>等到命令执行完毕，若是最后出现Deploy done: git，则成功，如下图</p>
+<p><img src="/2020/03/19/Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA2/6.jpg" alt></p>
+<p>现在就可以直接登录 <a href="http://test.github.io" target="_blank" rel="noopener">http://test.github.io</a> 进入博客啦！</p>
+<p><strong>参考博客:</strong><br>admol: <a href="https://www.cnblogs.com/admol/p/admol.html" target="_blank" rel="noopener">https://www.cnblogs.com/admol/p/admol.html</a></p>
+]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hexo博客搭建1</title>
     <url>/2020/03/19/Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA1/</url>
     <content><![CDATA[<h1 id="1、初步搭建"><a href="#1、初步搭建" class="headerlink" title="1、初步搭建"></a>1、初步搭建</h1><h2 id="Hexo简介"><a href="#Hexo简介" class="headerlink" title="Hexo简介"></a>Hexo简介</h2><p><a href="https://hexo.io/zh-cn/" target="_blank" rel="noopener">Hexo</a>是一款基于<strong>Node.js</strong>的静态博客框架，依赖少,易于安装使用，可以方便的生成静态网页托管在GitHub和Coding上，是搭建博客的首选框架。</p>
