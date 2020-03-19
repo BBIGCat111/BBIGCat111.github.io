@@ -3,7 +3,7 @@
   <entry>
     <title>Hexo博客搭建2</title>
     <url>/2020/03/19/Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA2/</url>
-    <content><![CDATA[<h1 id="2、部署到Github"><a href="#2、部署到Github" class="headerlink" title="2、部署到Github"></a>2、部署到Github</h1><h2 id="开始Github"><a href="#开始Github" class="headerlink" title="开始Github"></a>开始Github</h2><h3 id="1、创建Github账号"><a href="#1、创建Github账号" class="headerlink" title="1、创建Github账号"></a>1、创建Github账号</h3><p>要想部署到Github上，首先得有一个Github账号，现在前往<a href="https://github.com/" target="_blank" rel="noopener">Github官网</a>注册。</p>
+    <content><![CDATA[<h1 id="部署到Github"><a href="#部署到Github" class="headerlink" title="部署到Github"></a>部署到Github</h1><h2 id="开始Github"><a href="#开始Github" class="headerlink" title="开始Github"></a>开始Github</h2><h3 id="1、创建Github账号"><a href="#1、创建Github账号" class="headerlink" title="1、创建Github账号"></a>1、创建Github账号</h3><p>要想部署到Github上，首先得有一个Github账号，现在前往<a href="https://github.com/" target="_blank" rel="noopener">Github官网</a>注册。</p>
 <h3 id="2、创建一个github仓库-crerate-repository"><a href="#2、创建一个github仓库-crerate-repository" class="headerlink" title="2、创建一个github仓库(crerate repository)"></a>2、创建一个github仓库(crerate repository)</h3><p>假设你的github名称是test，则这个新建仓库的名称必须是<strong>test.github.io</strong>，必须是这个名称，其他的名称无效，部署成功以后访问 <a href="http://test.github.io" target="_blank" rel="noopener">http://test.github.io</a> 即可访问博客</p>
 <h3 id="3、修改配置文件"><a href="#3、修改配置文件" class="headerlink" title="3、修改配置文件"></a>3、修改配置文件</h3><p>用软件(这里我用的是<strong>vscode</strong>)打开Hexo/blog目录下的_config.yml文件(前一章提及过)</p>
 <p><img src="/2020/03/19/Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA2/1.jpg" alt></p>
@@ -44,7 +44,7 @@
   <entry>
     <title>Hexo博客搭建1</title>
     <url>/2020/03/19/Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA1/</url>
-    <content><![CDATA[<h1 id="1、初步搭建"><a href="#1、初步搭建" class="headerlink" title="1、初步搭建"></a>1、初步搭建</h1><h2 id="Hexo简介"><a href="#Hexo简介" class="headerlink" title="Hexo简介"></a>Hexo简介</h2><p><a href="https://hexo.io/zh-cn/" target="_blank" rel="noopener">Hexo</a>是一款基于<strong>Node.js</strong>的静态博客框架，依赖少,易于安装使用，可以方便的生成静态网页托管在GitHub和Coding上，是搭建博客的首选框架。</p>
+    <content><![CDATA[<h1 id="初步搭建"><a href="#初步搭建" class="headerlink" title="初步搭建"></a>初步搭建</h1><h2 id="Hexo简介"><a href="#Hexo简介" class="headerlink" title="Hexo简介"></a>Hexo简介</h2><p><a href="https://hexo.io/zh-cn/" target="_blank" rel="noopener">Hexo</a>是一款基于<strong>Node.js</strong>的静态博客框架，依赖少,易于安装使用，可以方便的生成静态网页托管在GitHub和Coding上，是搭建博客的首选框架。</p>
 <h2 id="开始搭建"><a href="#开始搭建" class="headerlink" title="开始搭建"></a>开始搭建</h2><h3 id="1、安装Git"><a href="#1、安装Git" class="headerlink" title="1、安装Git"></a>1、安装Git</h3><p>Windows:前往<a href="https://git-scm.com/download/win" target="_blank" rel="noopener">Git</a>官网下载软件，安装完成后有一个<strong>git bash</strong>的命令行工具，以后就使用这个工具来完成各种操作。</p>
 <h3 id="2、安装Node-js"><a href="#2、安装Node-js" class="headerlink" title="2、安装Node.js"></a>2、安装Node.js</h3><p>由于Hexo是基于Node.js来编写的，所以需要前往官网安装<a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">Node.js</a>,安装完成之后，在git bash里输入</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ node -v</span><br></pre></td></tr></table></figure>
