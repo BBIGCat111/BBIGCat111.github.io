@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="学习," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="##ServletServlet采用Java语言编写，是运行在Web服务器上的程序，它是作为浏览器客户端和服务器上的数据库或应用程序之间的中间层。(即一个编写的类) 使用Servlet，可以收集来自网页表单的用户输入，呈现来自数据库或者其他源的记录，还可以动态地创建网页。 下图显示了Servlet在Web应用程序中的位置。  ###Servlet包Servlet可以使用javax.servlet和">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Servlet总结">
+<meta property="og:url" content="http://yoursite.com/2020/07/21/Servlet%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="Bbigcat111 Blog">
+<meta property="og:description" content="##ServletServlet采用Java语言编写，是运行在Web服务器上的程序，它是作为浏览器客户端和服务器上的数据库或应用程序之间的中间层。(即一个编写的类) 使用Servlet，可以收集来自网页表单的用户输入，呈现来自数据库或者其他源的记录，还可以动态地创建网页。 下图显示了Servlet在Web应用程序中的位置。  ###Servlet包Servlet可以使用javax.servlet和">
+<meta property="og:image" content="http://yoursite.com/2020/07/21/Servlet%E6%80%BB%E7%BB%93/1.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/21/Servlet%E6%80%BB%E7%BB%93/Servlet%E6%80%BB%E7%BB%93%5C2.jpg">
+<meta property="article:published_time" content="2020-07-21T07:33:18.000Z">
+<meta property="article:modified_time" content="2020-07-29T07:25:11.402Z">
+<meta property="article:author" content="LiWeiAn">
+<meta property="article:tag" content="学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2020/07/21/Servlet%E6%80%BB%E7%BB%93/1.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/07/21/Servlet总结/"/>
+
+
+
+
+
+  <title>Servlet总结 | Bbigcat111 Blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Bbigcat111 Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">熊与大猫</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/21/Servlet%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LiWeiAn">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/fish.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Bbigcat111 Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Servlet总结</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-21T15:33:18+08:00">
+                2020-07-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Servlet/" itemprop="url" rel="index">
+                    <span itemprop="name">Servlet</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>##Servlet<br>Servlet采用Java语言编写，是运行在Web服务器上的<strong>程序</strong>，它是作为浏览器客户端和服务器上的数据库或应用程序之间的<strong>中间层</strong>。(即一个编写的类)</p>
+<p>使用Servlet，可以收集来自网页表单的用户输入，呈现来自数据库或者其他源的记录，还可以动态地创建网页。</p>
+<p>下图显示了Servlet在Web应用程序中的位置。</p>
+<p><img src="/2020/07/21/Servlet%E6%80%BB%E7%BB%93/1.jpg" alt></p>
+<p>###Servlet包<br>Servlet可以使用<strong>javax.servlet</strong>和<strong>javax.servlet.http</strong>包创建</p>
+<p>###设置Web服务器：Tomcat<br>Tomcat是一款独立服务器，可以用来测试Servlet。由于Servlet是作为客户端和服务器的中间程序，所以我们测试Servlet程序的时候，需要用到浏览器和客户端。我们电脑自身就属于浏览器客户端，与此同时我们打开这个Tomcat，此时我们的电脑成了一个独立服务器。这样此电脑即是客户端，又是服务器，方便调试Servlet程序。</p>
+<p>###Servlet生命周期<br>Servlet生命周期可被定义为从创建直到毁灭的整个过程：<br>1、Servlet通过调用init()方法进行初始化。<br>2、Servlet调用service()方法来处理客户端的请求。<br>3、Servlet通过调用destroy()方法终止。<br>4、最后Servlet是由JVM的垃圾回收器进行垃圾回收的。</p>
+<p>####init()方法<br>init()方法在第一次创建Servlet时被调用，在后续每次用户请求时不再调用。Servlet创建于用户第一次调用对应于该Servlet的URL时候，也可以指定Servlet在服务器第一次启动时被加载。<strong>当用户调用一个Servlet时，就会创建一个Servlet实例，每一个用户请求都会产生一个新的线程。</strong><br><strong>init()方法即servlet类的构造器</strong>，它简单地创建或加载一些数据，这些数据将被用于Servlet的整个生命周期。定义方法如下所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> <span class="keyword">throws</span> ServletException</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//初始化代码...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>####service方法<br>service()方法是执行实际任务的主要方法，用来处理来自客户端(浏览器)的请求，并把格式化的响应写回给客户端。<br>每次服务器接收到一个Servlet请求时，服务器会产生一个新的线程并调用服务。Service()方法检查HTTP的请求类型(GET,POST,PUT,DELETE等)，并在适当的时候调用doGet、doPost、doPut、doDelete等方法。<br><strong>浏览器点击一个链接或者提交一个信息，就相当于给服务器提交了一个请求，根据不同的请求，Servlet会做出一系列不同的处理，然后使得服务器给出响应，这样浏览器就能成功的进行到下个页面或者下个进程。</strong>定义方法如下所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">service</span><span class="params">(ServletRequest request, ServletResponse response)</span> <span class="keyword">throws</span> ServletException, IOException</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//前一个参数是请求引用，后一个是响应引用</span></span><br><span class="line">   ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>doGet()和doPost()方法是每次服务请求中最常用的方法。</p>
+<p>#####doGet()方法<br>GET请求来自于一个URL的正常请求，或者来自于一个<strong>未指定method的HTML表单</strong>(即HTML页面中要提交的表格信息)，它由doGet()方法处理：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> ServletException, IOException</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//Servlet代码</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>#####doGet()方法<br>POST请求来自于一个特别指定了METHOD为POST的HTML表单，它由doPost()方法处理。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> ServletException, IOException</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//Servlet代码</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>####destroy()方法<br>destroy()方法只会被掉用一次，在Servlet生命周期结束时被调用。destroy()方法<strong>可以让Servlet关闭数据库连接、停止后台线程、把Cookie列表或点击计数器写入到磁盘，并 执行其他类似的清理活动。</strong>在调用destroy()方法之后，Servlet对象被标记为垃圾回收，定义如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//终止化代码...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>###架构图<br>下图显示了一个典型的Servlet生命周期方案：<br><strong>·第一个到达服务器的HTTP请求被委派到Servlet容器。</strong><br><strong>·Servlet容器在调用service()方法之前加载Servlet。</strong><br><strong>·然后Servlet容器处理由多个线程产生的多个请求，每个线程执行一个单一的Servlet实例的service()方法。</strong></p>
+<p><img src="/2020/07/21/Servlet%E6%80%BB%E7%BB%93/Servlet%E6%80%BB%E7%BB%93%5C2.jpg" alt></p>
+<p>###Servlet实例<br>Servlet是服务HTTP请求并实现javax.servlet.Servlet接口的Java类。Web应用程序开发人员通常编写Servlet类来扩展javax.servlet.http.HttpServlet，并实现Servlet接口的抽象类专门用来处理HTTP请求。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 导入必需的 java 库</span></span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.*;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.*;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 扩展 HttpServlet 类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">  <span class="keyword">private</span> String message;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> <span class="keyword">throws</span> ServletException</span></span><br><span class="line"><span class="function">  </span>&#123;</span><br><span class="line">      <span class="comment">// 执行必需的初始化</span></span><br><span class="line">      message = <span class="string">"Hello World"</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest request,</span></span></span><br><span class="line"><span class="function"><span class="params">                    HttpServletResponse response)</span></span></span><br><span class="line"><span class="function">            <span class="keyword">throws</span> ServletException, IOException</span></span><br><span class="line"><span class="function">  </span>&#123;</span><br><span class="line">      <span class="comment">// 设置响应内容类型</span></span><br><span class="line">      response.setContentType(<span class="string">"text/html"</span>);</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 实际的逻辑是在这里</span></span><br><span class="line">      PrintWriter out = response.getWriter();</span><br><span class="line">      out.println(<span class="string">"&lt;h1&gt;"</span> + message + <span class="string">"&lt;/h1&gt;"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 处理 POST 方法请求的方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        doGet(request, response);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span></span></span><br><span class="line"><span class="function">  </span>&#123;</span><br><span class="line">      <span class="comment">// 什么也不做</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>###Servlet部署<br>在一个项目工程中，编写完Servlet的类之后，<strong>还需要编写web.xml文件中的内容</strong>，在<web-app>…</web-app>标签中间填写以下条目(由上知这个编写的类是HelloWorld)。<br><strong>(定义一个servlet，就映射到一个URL)</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;web-app&gt;      </span><br><span class="line">    &lt;servlet&gt;</span><br><span class="line">        &lt;servlet-name&gt;HelloWorld&lt;/servlet-name&gt;</span><br><span class="line">        &lt;servlet-<span class="class"><span class="keyword">class</span>&gt;<span class="title">HelloWorld</span>&lt;/<span class="title">servlet</span>-<span class="title">class</span>&gt;</span></span><br><span class="line"><span class="class">    &lt;/<span class="title">servlet</span>&gt;</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">    &lt;<span class="title">servlet</span>-<span class="title">mapping</span>&gt;</span></span><br><span class="line"><span class="class">        &lt;<span class="title">servlet</span>-<span class="title">name</span>&gt;<span class="title">HelloWorld</span>&lt;/<span class="title">servlet</span>-<span class="title">name</span>&gt;</span></span><br><span class="line"><span class="class">        &lt;<span class="title">url</span>-<span class="title">pattern</span>&gt;/<span class="title">HelloWorld</span>&lt;/<span class="title">url</span>-<span class="title">pattern</span>&gt; //此条目很重要，其中的/必不可少，中间内容是指服务器返回的响应的域名名称</span></span><br><span class="line"><span class="class">    &lt;/<span class="title">servlet</span>-<span class="title">mapping</span>&gt;</span></span><br><span class="line"><span class="class">&lt;/<span class="title">web</span>-<span class="title">app</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>###Servlet表单数据<br>很多情况下，需要传递一些信息，<strong>从浏览器到WEB服务器</strong>。浏览器使用两种方法可将这些信息传递到WEB服务器，分别为GET方法和POST方法。</p>
+<p>####GET方法<br>GET方法向页面请求发送已编码的用户信息，<strong>页面和已编码的信息中间用?字符分隔，即信息出现在浏览器页面的地址中</strong>，如下所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//www.test.com/hello?key1=value1&amp;key2=value2</span></span><br></pre></td></tr></table></figure>
+<p>GET方法是默认的从浏览器向Web服务器传递信息的方法，它会产生一个很长到的字符串，出现在浏览器的地址栏中。<strong>如果要向服务器传递的是密码或其他的敏感信息，不要使用GET方法。</strong>GET方法有大小限制，请求字符串中最多只能有1024个字符。Servlet采用doGet()方法处理这些请求。</p>
+<p>####POST方法<br>POST方法打包信息的方法与GET方法基本相同，但是POST方法不是把信息作为浏览器页面地址URL中的?字符后面的文本字符串进行发送，而是<strong>把这些信息作为一个单独的消息，以标准输出的形式传到后台程序，可以解析和使用这些标准输出。</strong>Servlet使用doPost()方法处理这些类型的请求。</p>
+<p>####使用Servlet读取表单数据<br>Servlet处理表单数据，这些数据会根据不同的情况使用不同的方法自动解析：<br><strong>·getParameter()</strong>: 调用request.getParameter()方法来获取表单参数的值。<br><strong>·getParameterValues()</strong>: 如果参数出现一次以上，则调用该方法，并返回多个值，例如复选框<br><strong>·getParameterNames()</strong>: 如果想要得到当前请求中的所有参数的完整列表，则调用该方法<br><strong>(方法都是在request对象上调用的)</strong></p>
+<p>#####读取名称(如果表单提交的数据中有中文数据则需要转码)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String name = <span class="keyword">new</span> String(requset.getParameter(<span class="string">"name"</span>).getBytes(<span class="string">"ISO-8859-1"</span>), <span class="string">"UTF-8"</span>);</span><br></pre></td></tr></table></figure>
+
+<p>#####读取URL</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">request.getParameter(<span class="string">"url"</span>);</span><br></pre></td></tr></table></figure>
+
+<p>一般处理POST请求的方法，是直接使用GET请求的方法，如下所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        doGet(request, response);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>读取所用参数时，采用<strong>getParameterNames()</strong>方法，返回的是Enumeration类型的枚举，其中包含未指定顺序的参数名。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Enumeration paramNames = request.getParameterNames();</span><br></pre></td></tr></table></figure>
+<p>遍历其中参数，使用<strong>hasMoreElements()</strong>方法判断是否还有参数，使用<strong>nextElement()</strong>方法取下一个参数名，再通过此参数名，使用<strong>getParameterValues()</strong>方法来获取此参数名所对应的值，如下所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//读取数据并用html画出表格</span></span><br><span class="line"><span class="keyword">while</span>(paramNames.hasMoreElements()) &#123;</span><br><span class="line">        String paramName = (String)paramNames.nextElement();</span><br><span class="line">        out.print(<span class="string">"&lt;tr&gt;&lt;td&gt;"</span> + paramName + <span class="string">"&lt;/td&gt;\n"</span>);</span><br><span class="line">        String[] paramValues = request.getParameterValues(paramName);</span><br><span class="line">        <span class="comment">// 读取单个值的数据</span></span><br><span class="line">        <span class="keyword">if</span> (paramValues.length == <span class="number">1</span>) &#123;</span><br><span class="line">            String paramValue = paramValues[<span class="number">0</span>];</span><br><span class="line">            <span class="keyword">if</span> (paramValue.length() == <span class="number">0</span>)</span><br><span class="line">                out.println(<span class="string">"&lt;td&gt;&lt;i&gt;没有值&lt;/i&gt;&lt;/td&gt;"</span>);</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                out.println(<span class="string">"&lt;td&gt;"</span> + paramValue + <span class="string">"&lt;/td&gt;"</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// 读取多个值的数据</span></span><br><span class="line">            out.println(<span class="string">"&lt;td&gt;&lt;ul&gt;"</span>);</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i &lt; paramValues.length; i++) &#123;</span><br><span class="line">                out.println(<span class="string">"&lt;li&gt;"</span> + paramValues[i]);</span><br><span class="line">            &#125;</span><br><span class="line">            out.println(<span class="string">"&lt;/ul&gt;&lt;/td&gt;"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">            out.print(<span class="string">"&lt;/tr&gt;"</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>###Servlet客户端HTTP请求<br>当浏览器请求网页时，它会向 Web 服务器发送特定信息，这些信息不能被直接读取，因为这些信息是作为 HTTP 请求的头的一部分进行传输的。可以查看<a href="https://www.runoob.com/http/http-tutorial.html" target="_blank" rel="noopener">HTTP协议</a>了解更多信息。</p>
+<p>使用HttpServletRequest的<strong>getHeaderNames()</strong>方法(对request对象调用)来读取HTTP头信息，该方法同样返回一个枚举，包含与当前的HTTP请求相关的头信息。一旦我们得到了这个枚举，就可以用上述的方式循环枚举，使用hasMoreElements()方法来确定何时停止，使用nextElement()方法来获取每个参数的名称。如下所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Enumeration headerNames = request.getHeaderNames();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(headerNames.hasMoreElements()) &#123;</span><br><span class="line">        String paramName = (String)headerNames.nextElement();</span><br><span class="line">        out.print(<span class="string">"&lt;tr&gt;&lt;td&gt;"</span> + paramName + <span class="string">"&lt;/td&gt;\n"</span>);</span><br><span class="line">        String paramValue = request.getHeader(paramName);</span><br><span class="line">        out.println(<span class="string">"&lt;td&gt; "</span> + paramValue + <span class="string">"&lt;/td&gt;&lt;/tr&gt;\n"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    out.println(<span class="string">"&lt;/table&gt;\n&lt;/body&gt;&lt;/html&gt;"</span>);</span><br></pre></td></tr></table></figure>
+
+<p>###Servlet服务器HTTP响应<br>当浏览器向服务器发出请求时，服务器会返回给浏览器响应。当一个Web服务器响应一个HTTP请求时，响应通常包括一个状态行、一些响应报头、一个空行和文档。一个典型的响应如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">HTTP&#x2F;1.1 200 OK </span><br><span class="line">Content-Type: text&#x2F;html    &#x2F;&#x2F;状态行</span><br><span class="line">Header2: ...               &#x2F;&#x2F;响应报头</span><br><span class="line">...</span><br><span class="line">HeaderN: ...</span><br><span class="line">  (Blank Line)             &#x2F;&#x2F;空行</span><br><span class="line">&lt;!doctype ...&gt;             &#x2F;&#x2F;消息主体</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;...&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">...</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+<p>状态行包括HTTP版本(本例中为HTTP/1.1)、一个状态码(在本例中为200)和一个对应于状态码的对消息(在本例中为OK)。HTTP1.1响应报头种类和描述以及设置HTTP响应报头的方法在如下链接：<br><strong>菜鸟教程：Servlet 服务器 HTTP 响应</strong> : <a href="https://www.runoob.com/servlet/servlet-server-response.html" target="_blank" rel="noopener">https://www.runoob.com/servlet/servlet-server-response.html</a></p>
+<p>#####设置响应内容类型</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">response.setContentType(<span class="string">"text/html;charset=UTF-8"</span>);</span><br></pre></td></tr></table></figure>
+
+<p>#####设置刷新自动加载时间为5秒</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">response.setIntHeader(<span class="string">"Refresh"</span>, <span class="number">5</span>);</span><br></pre></td></tr></table></figure>
+
+<p>###Servlet HTTP状态码<br>可能从Web服务器返回的HTTP状态码和相关的信息列表在如下链接：<br><strong>菜鸟教程：Servlet Http状态码</strong> : <a href="https://www.runoob.com/servlet/servlet-http-status-codes.html" target="_blank" rel="noopener">https://www.runoob.com/servlet/servlet-http-status-codes.html</a></p>
+<p>####设置HTTP状态代码的方法<br><strong>·public void setStatus(int statusCode)</strong>: 该方法设置一个任意的状态码。setStatus方法接受一个int(状态码)作为参数。如果响应包含了一个特殊的状态码和文档，确保在使用PrintWriter实际返回任何内容之前调用setStatus。<br><strong>·public void sendRedirect(String url)</strong>: 该方法生成一个302响应，连同一个带有新文档URL的Location头。<br><strong>·public void sendError(int code, String message)</strong>: 该方法发送一个状态码(通常404)，连同一个在HTML文档内部自动格式化并发送到客户端的短消息。</p>
+<p>把407错误代码发送到客户端浏览器，浏览器会显示”Need authentication!!!”消息。在doGet方法中处理，如下所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 处理 GET 方法请求的方法</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> ServletException, IOException</span></span><br><span class="line"><span class="function">  </span>&#123;</span><br><span class="line">      <span class="comment">// 设置错误代码和原因</span></span><br><span class="line">      response.sendError(<span class="number">407</span>, <span class="string">"Need authentication!!!"</span> );</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>###Servlet编写过滤器<br>Servlet过滤器可以<strong>动态地拦截请求和响应</strong>，以变换或使用包含在请求或响应中的信息。可以将一个或多个Servlet过滤器附加到一个Servlet或一组Servlet。Servlet过滤器也可以附加到JSP文件和HTML页面，在调用Servlet前调用所有附加的Servlet过滤器。</p>
+<p>Servlet过滤器是可用于Servlet编程的Java类，可以实现以下目的：<br><strong>·在客户端的请求访问后端资源之前，拦截这些请求。</strong><br><strong>·在服务器的响应发送回客户端之前，处理这些响应。</strong></p>
+<p>根据规范建议的各种类型的过滤器：<br><strong>·身份验证过滤器</strong><br><strong>·数据压缩过滤器</strong><br><strong>·加密过滤器</strong><br><strong>·触发资源访问事件过滤器</strong><br><strong>·图像转换过滤器</strong><br><strong>·日志记录和审核过滤器</strong><br><strong>·MIME-TYPE链过滤器</strong><br><strong>·标记化过滤器</strong><br><strong>·XSL/T过滤器</strong></p>
+<p>过滤器通过<strong>web.xml标签</strong>来声明，然后映射到应用程序部署描述符中的Servlet名称或URL模式。当Web容器启动Web应用程序时，它会为部署描述符中声明的每一个过滤器创建一个实例。Filter的执行顺序与在Web.xml配置文件中的配置顺序一致，一般把Filter配置在所有的Servlet之前。</p>
+<p>####Servlet过滤器方法<br>过滤器是一个实现了<strong>javax.servlet.Filter接口</strong>的Java类，javax.servlet.Filter接口定义了三个方法：<br><strong>·public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)</strong>：该方法完成实际的过滤操作，当客户端请求方法与过滤器设置匹配的URL时，Servlet容器将先调用过滤器的doFilter()方法，FilterChain用户访问后续过滤器。<br><strong>·public void init(FilterConfig filterConfig)</strong>：web 应用程序启动时，web 服务器将创建Filter 的实例对象，并调用其init方法，读取web.xml配置，完成对象的初始化功能，从而为后续的用户请求作好拦截的准备工作（filter对象只会创建一次，init方法也只会执行一次）。开发人员通过init方法的参数，可获得代表当前filter配置信息的FilterConfig对象。<br><strong>·public void destroy()</strong>：Servlet容器在销毁过滤器实例前调用该方法，在该方法中释放Servlet过滤器占用的资源。</p>
+<p>####FilterConfig使用<br>Filter的init方法中提供了一个FilterConfig对象，web.xml文件配置如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;filter&gt;</span><br><span class="line">    &lt;filter-name&gt;LogFilter&lt;/filter-name&gt;</span><br><span class="line">    &lt;filter-<span class="class"><span class="keyword">class</span>&gt;<span class="title">LogFilter</span>&lt;/<span class="title">filter</span>-<span class="title">class</span>&gt;</span></span><br><span class="line"><span class="class">    &lt;<span class="title">init</span>-<span class="title">param</span>&gt;</span></span><br><span class="line"><span class="class">        &lt;<span class="title">param</span>-<span class="title">name</span>&gt;<span class="title">Site</span>&lt;/<span class="title">param</span>-<span class="title">name</span>&gt;</span></span><br><span class="line"><span class="class">        &lt;<span class="title">param</span>-<span class="title">value</span>&gt;菜鸟教程&lt;/<span class="title">param</span>-<span class="title">value</span>&gt;</span></span><br><span class="line"><span class="class">    &lt;/<span class="title">init</span>-<span class="title">param</span>&gt;</span></span><br><span class="line"><span class="class">&lt;/<span class="title">filter</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>在init方法使用FilterConfig对象获取参数，使用<strong>config.getInitParameter()</strong>方法来获取参数，如下所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span>  <span class="title">init</span><span class="params">(FilterConfig config)</span> <span class="keyword">throws</span> ServletException </span>&#123;</span><br><span class="line">    <span class="comment">// 获取初始化参数</span></span><br><span class="line">    String site = config.getInitParameter(<span class="string">"Site"</span>); </span><br><span class="line">    <span class="comment">// 输出初始化参数</span></span><br><span class="line">    System.out.println(<span class="string">"网站名称: "</span> + site); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>####Servlet过滤器实例<br>Servlet是一个编写的实现了Filter接口的Java类，以下是Servlet过滤器的实例，将输出网站名称和地址。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//导入必需的 java 库</span></span><br><span class="line"><span class="keyword">import</span> javax.servlet.*;</span><br><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="comment">//实现 Filter 类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LogFilter</span> <span class="keyword">implements</span> <span class="title">Filter</span>  </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span>  <span class="title">init</span><span class="params">(FilterConfig config)</span> <span class="keyword">throws</span> ServletException </span>&#123;</span><br><span class="line">        <span class="comment">// 获取初始化参数</span></span><br><span class="line">        String site = config.getInitParameter(<span class="string">"Site"</span>); </span><br><span class="line"></span><br><span class="line">        <span class="comment">// 输出初始化参数</span></span><br><span class="line">        System.out.println(<span class="string">"网站名称: "</span> + site); </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span>  <span class="title">doFilter</span><span class="params">(ServletRequest request, ServletResponse response, FilterChain chain)</span> <span class="keyword">throws</span> java.io.IOException, ServletException </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 输出站点名称</span></span><br><span class="line">        System.out.println(<span class="string">"站点网址：http://www.runoob.com"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 把请求传回过滤链</span></span><br><span class="line">        chain.doFilter(request,response);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span><span class="params">( )</span></span>&#123;</span><br><span class="line">        <span class="comment">/* 在 Filter 实例被 Web 容器从服务移除之前调用 */</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>####Web.xml中的Servlet过滤器映射<br>定义过滤器，然后映射到一个URL或Servlet，这与定义Servlet，然后映射到一个URL模式方向大致相同。在web.xml中为filter标签创建下面的条目：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version&#x3D;&quot;1.0&quot; encoding&#x3D;&quot;UTF-8&quot;?&gt;  </span><br><span class="line">&lt;web-app&gt;  </span><br><span class="line">&lt;filter&gt;</span><br><span class="line">  &lt;filter-name&gt;LogFilter&lt;&#x2F;filter-name&gt;</span><br><span class="line">  &lt;filter-class&gt;LogFilter&lt;&#x2F;filter-class&gt;</span><br><span class="line">  &lt;init-param&gt;                      &#x2F;&#x2F;多了初始化参数</span><br><span class="line">    &lt;param-name&gt;Site&lt;&#x2F;param-name&gt;</span><br><span class="line">    &lt;param-value&gt;菜鸟教程&lt;&#x2F;param-value&gt;</span><br><span class="line">  &lt;&#x2F;init-param&gt;</span><br><span class="line">&lt;&#x2F;filter&gt;</span><br><span class="line">&lt;filter-mapping&gt;        </span><br><span class="line">  &lt;filter-name&gt;LogFilter&lt;&#x2F;filter-name&gt;</span><br><span class="line">  &lt;url-pattern&gt;&#x2F;*&lt;&#x2F;url-pattern&gt;</span><br><span class="line">&lt;&#x2F;filter-mapping&gt;</span><br><span class="line">&lt;servlet&gt;  </span><br><span class="line">  &lt;!-- 类名 --&gt;  </span><br><span class="line">  &lt;servlet-name&gt;DisplayHeader&lt;&#x2F;servlet-name&gt;  </span><br><span class="line">  &lt;!-- 所在的包 --&gt;  </span><br><span class="line">  &lt;servlet-class&gt;com.runoob.test.DisplayHeader&lt;&#x2F;servlet-class&gt;  </span><br><span class="line">&lt;&#x2F;servlet&gt;  </span><br><span class="line">&lt;servlet-mapping&gt;  </span><br><span class="line">  &lt;servlet-name&gt;DisplayHeader&lt;&#x2F;servlet-name&gt;  </span><br><span class="line">  &lt;!-- 访问的网址 --&gt;  </span><br><span class="line">  &lt;url-pattern&gt;&#x2F;TomcatTest&#x2F;DisplayHeader&lt;&#x2F;url-pattern&gt;  </span><br><span class="line">&lt;&#x2F;servlet-mapping&gt;  </span><br><span class="line">&lt;&#x2F;web-app&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>上述过滤器适用于所有的Servlet，因为在配置中指定了/*，如果只是想在少数的Servlet上应用过滤器，可以指定一个特定的Servlet路径。</strong></p>
+<p>####使用多个过滤器<br>Web应用程序可以根据特定的目的定义若干个不同的过滤器，假设定义了两个过滤器AuthenFilter和LogFilter，需要创建一个如下所述的不同的映射：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;filter&gt;</span><br><span class="line">   &lt;filter-name&gt;LogFilter&lt;&#x2F;filter-name&gt;</span><br><span class="line">   &lt;filter-class&gt;com.runoob.test.LogFilter&lt;&#x2F;filter-class&gt;</span><br><span class="line">   &lt;init-param&gt;</span><br><span class="line">      &lt;param-name&gt;test-param&lt;&#x2F;param-name&gt;</span><br><span class="line">      &lt;param-value&gt;Initialization Paramter&lt;&#x2F;param-value&gt;</span><br><span class="line">   &lt;&#x2F;init-param&gt;</span><br><span class="line">&lt;&#x2F;filter&gt;</span><br><span class="line"></span><br><span class="line">&lt;filter&gt;</span><br><span class="line">   &lt;filter-name&gt;AuthenFilter&lt;&#x2F;filter-name&gt;</span><br><span class="line">   &lt;filter-class&gt;com.runoob.test.AuthenFilter&lt;&#x2F;filter-class&gt;</span><br><span class="line">   &lt;init-param&gt;</span><br><span class="line">      &lt;param-name&gt;test-param&lt;&#x2F;param-name&gt;</span><br><span class="line">      &lt;param-value&gt;Initialization Paramter&lt;&#x2F;param-value&gt;</span><br><span class="line">   &lt;&#x2F;init-param&gt;</span><br><span class="line">&lt;&#x2F;filter&gt;</span><br><span class="line"></span><br><span class="line">&lt;filter-mapping&gt;</span><br><span class="line">   &lt;filter-name&gt;LogFilter&lt;&#x2F;filter-name&gt;</span><br><span class="line">   &lt;url-pattern&gt;&#x2F;*&lt;&#x2F;url-pattern&gt;</span><br><span class="line">&lt;&#x2F;filter-mapping&gt;</span><br><span class="line"></span><br><span class="line">&lt;filter-mapping&gt;</span><br><span class="line">   &lt;filter-name&gt;AuthenFilter&lt;&#x2F;filter-name&gt;</span><br><span class="line">   &lt;url-pattern&gt;&#x2F;*&lt;&#x2F;url-pattern&gt;</span><br><span class="line">&lt;&#x2F;filter-mapping&gt;</span><br></pre></td></tr></table></figure>
+<p>先定义过滤器，再进行过滤器对URL的映射</p>
+<p>####过滤器的应用顺序<br><strong>web.xml中的filter-mapping元素的顺序</strong>决定了Web容器应用过滤器到Servlet的顺序，若要反转过滤器的的顺序，只需要在web.xml文件中反转filter-mapping元素即可。<br>若上述实例先应用LogFilter，然后再应用AuthenFilter，web.xml如下所示:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;filter-mapping&gt;</span><br><span class="line">   &lt;filter-name&gt;AuthenFilter&lt;&#x2F;filter-name&gt;</span><br><span class="line">   &lt;url-pattern&gt;&#x2F;*&lt;&#x2F;url-pattern&gt;</span><br><span class="line">&lt;&#x2F;filter-mapping&gt;</span><br><span class="line"></span><br><span class="line">&lt;filter-mapping&gt;</span><br><span class="line">   &lt;filter-name&gt;LogFilter&lt;&#x2F;filter-name&gt;</span><br><span class="line">   &lt;url-pattern&gt;&#x2F;*&lt;&#x2F;url-pattern&gt;</span><br><span class="line">&lt;&#x2F;filter-mapping&gt;</span><br></pre></td></tr></table></figure>
+
+<p>####web.xml配置各节点说明<br>web.xml的配置各节点的说明在如下网址中所示：<br><strong>菜鸟教程：Servlet编写过滤器</strong> : <a href="https://www.runoob.com/servlet/servlet-writing-filters.html" target="_blank" rel="noopener">https://www.runoob.com/servlet/servlet-writing-filters.html</a></p>
+<p>###Servlet异常处理<br>当一个Servlet抛出一个异常时，Web容器在使用了exception-type元素的web.xml中搜索与抛出异常类型相匹配的配置。必须在web.xml中使用<strong>error-page</strong>元素来指定对<strong>特定异常或HTTP状态码</strong>作出相应的Servlet调用。</p>
+<p>####web.xml配置<br>假设，有一个ErrorHandler的Servlet在任何已定义的异常或错误出现时被调用，以下是在web.xml中创建的项：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- servlet 定义 --&gt;</span><br><span class="line">&lt;servlet&gt;</span><br><span class="line">        &lt;servlet-name&gt;ErrorHandler&lt;&#x2F;servlet-name&gt;</span><br><span class="line">        &lt;servlet-class&gt;ErrorHandler&lt;&#x2F;servlet-class&gt;</span><br><span class="line">&lt;&#x2F;servlet&gt;</span><br><span class="line">&lt;!-- servlet 映射 --&gt;</span><br><span class="line">&lt;servlet-mapping&gt;</span><br><span class="line">        &lt;servlet-name&gt;ErrorHandler&lt;&#x2F;servlet-name&gt;</span><br><span class="line">        &lt;url-pattern&gt;&#x2F;ErrorHandler&lt;&#x2F;url-pattern&gt;</span><br><span class="line">&lt;&#x2F;servlet-mapping&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- error-code 相关的错误页面 --&gt;</span><br><span class="line">&lt;error-page&gt;</span><br><span class="line">    &lt;error-code&gt;404&lt;&#x2F;error-code&gt;</span><br><span class="line">    &lt;location&gt;&#x2F;ErrorHandler&lt;&#x2F;location&gt;</span><br><span class="line">&lt;&#x2F;error-page&gt;</span><br><span class="line">&lt;error-page&gt;</span><br><span class="line">    &lt;error-code&gt;403&lt;&#x2F;error-code&gt;</span><br><span class="line">    &lt;location&gt;&#x2F;ErrorHandler&lt;&#x2F;location&gt;</span><br><span class="line">&lt;&#x2F;error-page&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- exception-type 相关的错误页面 --&gt;</span><br><span class="line">&lt;error-page&gt;</span><br><span class="line">    &lt;exception-type&gt;javax.servlet.ServletException&lt;&#x2F;exception-type &gt;</span><br><span class="line">    &lt;location&gt;&#x2F;ErrorHandler&lt;&#x2F;location&gt;</span><br><span class="line">&lt;&#x2F;error-page&gt;</span><br><span class="line"></span><br><span class="line">&lt;error-page&gt;</span><br><span class="line">    &lt;exception-type&gt;java.io.IOException&lt;&#x2F;exception-type &gt;</span><br><span class="line">    &lt;location&gt;&#x2F;ErrorHandler&lt;&#x2F;location&gt;</span><br><span class="line">&lt;&#x2F;error-page&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>如果想对所有的异常有一个通用的错误处理程序，那么应该定义下面的error-page，而不是为每个异常定义单独的error-page元素：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;error-page&gt;</span><br><span class="line">    &lt;exception-type&gt;java.lang.Throwable&lt;&#x2F;exception-type &gt;</span><br><span class="line">    &lt;location&gt;&#x2F;ErrorHandler&lt;&#x2F;location&gt;</span><br><span class="line">&lt;&#x2F;error-page&gt;</span><br></pre></td></tr></table></figure>
+
+<p>####请求属性-错误/异常<br>以下是错误处理的Servlet可以访问的请求属性列表，用来分析错误/异常的性质。<br><strong>·javax.servlet.error.status_code</strong>：该属性给出状态码，状态码可被存储，并在存储为 java.lang.Integer 数据类型后可被分析。<br><strong>·javax.servlet.error.exception_type</strong>：该属性给出异常类型的信息，异常类型可被存储，并在存储为 java.lang.Class 数据类型后可被分析。<br><strong>·javax.servlet.error.message</strong>：该属性给出确切错误消息的信息，信息可被存储，并在存储为 java.lang.String 数据类型后可被分析。<br><strong>·javax.servlet.error.request_uri</strong>：该属性给出有关 URL 调用 Servlet 的信息，信息可被存储，并在存储为 java.lang.String 数据类型后可被分析。<br><strong>·javax.servlet.error.exception</strong>：该属性给出异常产生的信息，信息可被存储，并在存储为 java.lang.Throwable 数据类型后可被分析。<br><strong>·javax.servlet.error.servlet_name</strong>：该属性给出 Servlet 的名称，名称可被存储，并在存储为 java.lang.String 数据类型后可被分析。</p>
+<p>从请求中得到错误或者异常，采用<strong>request.getAttribute()</strong>方法，来获得请求中产生的异常，如下所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Throwable throwable = (Throwable)request.getAttribute(<span class="string">"javax.servlet.error.exception"</span>);</span><br><span class="line">Integer statusCode = (Integer)request.getAttribute(<span class="string">"javax.servlet.error.status_code"</span>);</span><br><span class="line">String servletName = (String)request.getAttribute(<span class="string">"javax.servlet.error.servlet_name"</span>);</span><br><span class="line">String requestUri = (String)request.getAttribute(<span class="string">"javax.servlet.error.request_uri"</span>);</span><br></pre></td></tr></table></figure>
+
+<p>###Servlet Cookie处理<br>Cookie是存储在客户端计算机上的文本文件，并保留了各种跟踪信息。<br>识别返回用户包括三个步骤：<br>1、服务器脚本向浏览器发送一组Cookie。例如：姓名、年龄或识别号码等。<br>2、浏览器将这些信息存储在本地计算机上，以备将来使用。<br>3、当下一次浏览器向Web服务器发送任何请求时，浏览器会把这些Cookie信息发送到服务器，服务器将使用这些信息来识别用户。</p>
+<p><strong>Servlet Cookie 处理需要对中文进行编码与解码，方法如下：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String str = java.net.URLEncoder.encode(<span class="string">"中文"</span>，<span class="string">"UTF-8"</span>);            <span class="comment">//编码</span></span><br><span class="line">String str = java.net.URLDecoder.decode(<span class="string">"编码后的字符串"</span>,<span class="string">"UTF-8"</span>);   <span class="comment">// 解码</span></span><br></pre></td></tr></table></figure>
+
+<p>####Cookie 剖析<br>Cookie通常设置在HTTP头信息中，Cookie剖析和Cookie方法列表在如下网址中：<br><strong>Servlet Cookie处理</strong> : <a href="https://www.runoob.com/servlet/servlet-cookies-handling.html" target="_blank" rel="noopener">https://www.runoob.com/servlet/servlet-cookies-handling.html</a></p>
+<p>####通过Servlet设置Cookie<br>通过Servlet设置Cookie包括三个步骤：<br><strong>1、创建一个Cookie对象</strong>：可以调用带有cookie名称和cookie值的Cookie构造函数，cookie名称和cookie值都是字符串。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Cookie cookie = <span class="keyword">new</span> Cookie(<span class="string">"key"</span>,<span class="string">"value"</span>);</span><br></pre></td></tr></table></figure>
+<p>无论名字还是值，都不应该包含空格或以下任何字符：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[ ] ( ) &#x3D; , &quot; &#x2F; ? @ : ;</span><br></pre></td></tr></table></figure>
+
+<p><strong>2、设置最大生存周期</strong>：可以使用setMaxAge方法来指定cookie能够保持有效的时间(以秒为单位)。下面将设置一个最长有效期为24小时的cookie。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cookie.setMaxAge(<span class="number">60</span>*<span class="number">60</span>*<span class="number">24</span>);</span><br></pre></td></tr></table></figure>
+
+<p><strong>3、发送Cookie到HTTP响应头</strong>：可以使用response.addCookie来添加HTTP响应头中的Cookie，如下所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">response.addCookie(cookie);</span><br></pre></td></tr></table></figure>
+
+<p>为名字和姓氏<strong>设置Cookie</strong>的例子如下所示，在doGet()中实现：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> ServletException, IOException</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">// 为名字和姓氏创建 Cookie      </span></span><br><span class="line">        Cookie name = <span class="keyword">new</span> Cookie(<span class="string">"name"</span>, URLEncoder.encode(request.getParameter(<span class="string">"name"</span>), <span class="string">"UTF-8"</span>)); <span class="comment">// 中文转码</span></span><br><span class="line">        Cookie url = <span class="keyword">new</span> Cookie(<span class="string">"url"</span>, request.getParameter(<span class="string">"url"</span>));</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 为两个 Cookie 设置过期日期为 24 小时后</span></span><br><span class="line">        name.setMaxAge(<span class="number">60</span>*<span class="number">60</span>*<span class="number">24</span>); </span><br><span class="line">        url.setMaxAge(<span class="number">60</span>*<span class="number">60</span>*<span class="number">24</span>); </span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 在响应头中添加两个 Cookie</span></span><br><span class="line">        response.addCookie( name );</span><br><span class="line">        response.addCookie( url );</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>####通过Servlet读取Cookie<br>要读取Cookie，需要通过调用HttpServletRequest的<strong>getCookies()</strong>方法来创建一个javax.servlet.http.Cookie对象的数组。然后循环遍历数组，并使用<strong>getName()</strong>和<strong>getValue()</strong>方法来访问每个Cookie和关联的值。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">Cookie cookie = <span class="keyword">null</span>;</span><br><span class="line">Cookie[] cookies = <span class="keyword">null</span>;</span><br><span class="line"><span class="comment">// 获取与该域相关的 Cookie 的数组</span></span><br><span class="line">cookies = request.getCookies();</span><br><span class="line"><span class="keyword">if</span>( cookies != <span class="keyword">null</span> )&#123;</span><br><span class="line">    out.println(<span class="string">"&lt;h2&gt;Cookie 名称和值&lt;/h2&gt;"</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; cookies.length; i++)&#123;</span><br><span class="line">        cookie = cookies[i];</span><br><span class="line">        <span class="keyword">if</span>((cookie.getName( )).compareTo(<span class="string">"name"</span>) == <span class="number">0</span> )&#123;</span><br><span class="line">            cookie.setMaxAge(<span class="number">0</span>);</span><br><span class="line">            response.addCookie(cookie);</span><br><span class="line">            out.print(<span class="string">"已删除的 cookie："</span> + cookie.getName( ) + <span class="string">"&lt;br/&gt;"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        out.print(<span class="string">"名称："</span> + cookie.getName( ) + <span class="string">"，"</span>);</span><br><span class="line">        out.print(<span class="string">"值："</span> +  URLDecoder.decode(cookie.getValue(), <span class="string">"utf-8"</span>) +<span class="string">" &lt;br/&gt;"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    out.println(<span class="string">"&lt;h2 class=\"tutheader\"&gt;No Cookie founds&lt;/h2&gt;"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>####通过Servlet删除Cookie<br>删除Cookie是非常简单的，如果想删除一个cookie，只需要按照以下三个步骤进行：<br><strong>1、读取一个现有的cookie，并把它存储在Cookie对象中.</strong><br><strong>2、使用setMaxAge()方法设置cookie的年龄为0，来删除现有的cookie。</strong><br><strong>3、把这个cookie添加到响应头。</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">Cookie cookie = <span class="keyword">null</span>;</span><br><span class="line">Cookie[] cookies = <span class="keyword">null</span>;</span><br><span class="line"><span class="comment">// 获取与该域相关的 Cookie 的数组</span></span><br><span class="line">cookies = request.getCookies();</span><br><span class="line"><span class="keyword">if</span>( cookies != <span class="keyword">null</span> )&#123;</span><br><span class="line">    out.println(<span class="string">"&lt;h2&gt;Cookie 名称和值&lt;/h2&gt;"</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; cookies.length; i++)&#123;</span><br><span class="line">        cookie = cookies[i];</span><br><span class="line">        <span class="keyword">if</span>((cookie.getName( )).compareTo(<span class="string">"url"</span>) == <span class="number">0</span> )&#123;</span><br><span class="line">            cookie.setMaxAge(<span class="number">0</span>);</span><br><span class="line">            response.addCookie(cookie);</span><br><span class="line">            out.print(<span class="string">"已删除的 cookie："</span> + cookie.getName( ) + <span class="string">"&lt;br/&gt;"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        out.print(<span class="string">"名称："</span> + cookie.getName( ) + <span class="string">"，"</span>);</span><br><span class="line">        out.print(<span class="string">"值："</span> + cookie.getValue( )+<span class="string">" &lt;br/&gt;"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    out.println(<span class="string">"&lt;h2 class=\"tutheader\"&gt;No Cookie founds&lt;/h2&gt;"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>###Servlet Session 跟踪<br>HTTP 是一种”无状态”协议，这意味着每次客户端检索网页时，客户端打开一个单独的连接到 Web 服务器，服务器会自动<strong>不保留</strong>之前客户端请求的任何记录。<br>但是仍然有以下三种方式来维持Web客户端和Web服务器之间的session会话，分别是<strong>Cookies、隐藏的表单字段和URL重写。</strong></p>
+<p>####Cookies<br>一个 Web 服务器可以分配一个唯一的session会话ID作为每个Web客户端的cookie，对于客户端的后续请求可以使用接收到的cookie来识别。<strong>这可能不是一个有效的方法</strong>，因为很多浏览器不支持cookie，所以我们建议不要使用这种方式来维持session会话。</p>
+<p>####隐藏的表单字段<br>一个Web服务器可以发送一个隐藏的HTML表单字段，以及一个唯一的session会话ID，如下所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=<span class="string">"hidden"</span> name=<span class="string">"sessionid"</span> value=<span class="string">"12345"</span>&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>当表单被提交时，指定的名称和值会被自动包含在GET或POST数据中，每次当Web浏览器发送回请求时，session_id值可以用于保持不同的Web浏览器的跟踪。</strong>这可能是一种保持session会话跟踪的有效方式，但是点击常规的超文本链接不会导致表单提交，因此隐藏的表单字段也不支持常规的session会话跟踪。</p>
+<p>####URL重写<br>可以<strong>在每个URL末尾追加一些额外的数据</strong>来标识session会话，服务器会把该session会话标识符与已存储的有关 session 会话的数据相关联.</p>
+<p>####HTTPSession 对象<br>Servlet还提供了<strong>HttpSession接口</strong>，该接口提供了一种跨多个页面请求或访问网站时识别用户以及存储有关用户信息的方式。Servlet容器使用这个接口来<strong>创建一个HTTP客户端和HTTP服务器之间的session会话</strong>，会话持续一个指定的时间段，跨多个连接或页面请求。<br>通过调用<strong>HttpServletRequest的公共方法getSession()</strong>来获取HttpSession对象，如下所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HttpSession session = request.getSession();</span><br></pre></td></tr></table></figure>
+<p>需要在向客户端发送任何文档内容之前调用request.getSession()。HttpSession对象中可用的几个重要方法在如下地址中：<br><strong>菜鸟教程-HttpSession对象</strong> : <a href="https://www.runoob.com/servlet/servlet-session-tracking.html" target="_blank" rel="noopener">https://www.runoob.com/servlet/servlet-session-tracking.html</a></p>
+<p>####Session跟踪实例<br>本实例说明了如何使用HttpSession对象获取session会话创建时间和最后访问时间。如果不存在session会话，将通过请求创建一个新的session会话。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 如果不存在 session 会话，则创建一个 session 对象</span></span><br><span class="line">HttpSession session = request.getSession(<span class="keyword">true</span>);</span><br><span class="line"><span class="comment">// 获取 session 创建时间</span></span><br><span class="line">Date createTime = <span class="keyword">new</span> Date(session.getCreationTime());</span><br><span class="line"><span class="comment">// 获取该网页的最后一次访问时间</span></span><br><span class="line">Date lastAccessTime = <span class="keyword">new</span> Date(session.getLastAccessedTime());</span><br><span class="line">         </span><br><span class="line"><span class="comment">//设置日期输出的格式  </span></span><br><span class="line">SimpleDateFormat df=<span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd HH:mm:ss"</span>);</span><br><span class="line"></span><br><span class="line">String title = <span class="string">"Servlet Session 实例 - 菜鸟教程"</span>;</span><br><span class="line">Integer visitCount = <span class="keyword">new</span> Integer(<span class="number">0</span>);</span><br><span class="line">String visitCountKey = <span class="keyword">new</span> String(<span class="string">"visitCount"</span>);</span><br><span class="line">String userIDKey = <span class="keyword">new</span> String(<span class="string">"userID"</span>);</span><br><span class="line">String userID = <span class="keyword">new</span> String(<span class="string">"Runoob"</span>);</span><br><span class="line"><span class="keyword">if</span>(session.getAttribute(visitCountKey) == <span class="keyword">null</span>) &#123;</span><br><span class="line">    session.setAttribute(visitCountKey, <span class="keyword">new</span> Integer(<span class="number">0</span>));</span><br><span class="line">&#125;</span><br><span class="line">   </span><br><span class="line"><span class="comment">// 检查网页上是否有新的访问者</span></span><br><span class="line"><span class="keyword">if</span> (session.isNew())&#123;</span><br><span class="line">    title = <span class="string">"Servlet Session 实例 - 菜鸟教程"</span>;</span><br><span class="line">    session.setAttribute(userIDKey, userID);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    visitCount = (Integer)session.getAttribute(visitCountKey);</span><br><span class="line">    visitCount = visitCount + <span class="number">1</span>;</span><br><span class="line">    userID = (String)session.getAttribute(userIDKey);</span><br><span class="line">&#125;</span><br><span class="line">session.setAttribute(visitCountKey,  visitCount);</span><br><span class="line"></span><br><span class="line">session.getId();    <span class="comment">//获得ID，visitCount是访问统计数量</span></span><br></pre></td></tr></table></figure>
+
+<p>####删除Session会话数据<br>当完成了一个用户的session会话数据，有以下几种选择：<br><strong>·移除一个特定的属性</strong>：可以调用<strong>public void removeAttribute(String name)</strong>方法来删除与特定的键相关联的值。<br><strong>·删除整个session会话</strong>：可以调用<strong>public void invalidate()</strong>方法来丢弃整个session会话。<br><strong>·设置session会话过期时间</strong>：可以调用<strong>public void setMaxInactiveInterval(int interval)</strong>方法来单独设置session会话超时。<br><strong>·注销用户</strong>：如果使用的是支持servlet 2.4的服务器，可以调用<strong>logout</strong>来注销 Web服务器的客户端，并把属于所有用户的所有session会话设置为无效。<br><strong>web.xml配置</strong>：如果使用的是Tomcat，可以在web.xml文件中配置session会话超时。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;session-config&gt;</span><br><span class="line">  &lt;session-timeout&gt;15&lt;&#x2F;session-timeout&gt;   &#x2F;&#x2F;超时时间单位是分钟</span><br><span class="line">&lt;&#x2F;session-config&gt;</span><br></pre></td></tr></table></figure>
+
+<p>####Servlet实现账号密码登录</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> ServletException, IOException</span>&#123;</span><br><span class="line"></span><br><span class="line">        request.setCharacterEncoding(<span class="string">"UTF-8"</span>);/</span><br><span class="line">        response.setCharacterEncoding(<span class="string">"UTF-8"</span>);</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">this</span>.SignIn(request, response) == <span class="keyword">true</span>)&#123;</span><br><span class="line">            request.getRequestDispatcher(<span class="string">"/SignIn_success.jsp"</span>).forward(request, response);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            request.getRequestDispatcher(<span class="string">"/SignIn_fail.jsp"</span>).forward(request, response);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> Boolean <span class="title">SignIn</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> ServletException, IOException</span>&#123;</span><br><span class="line">        UserDAO userDAO = <span class="keyword">new</span> UserDAO();</span><br><span class="line">        String account = request.getParameter(<span class="string">"account"</span>);</span><br><span class="line">        String password = request.getParameter(<span class="string">"password"</span>);</span><br><span class="line">        ArrayList&lt;User&gt; userList = userDAO.getAllUser();  <span class="comment">//获得数据库所有的User</span></span><br><span class="line">        <span class="keyword">for</span>(User user : userList)&#123;</span><br><span class="line">            <span class="keyword">if</span>(account.equals(user.getAccount()))&#123;</span><br><span class="line">                <span class="keyword">if</span>(password.equals(user.getPassword()))&#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中<strong>request.getRequestDispatcher(“/SignIn_success.jsp”).forward(request, response);</strong> 方法是跳转页面到SignIn_success.jsp。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag"><i class="fa fa-tag"></i> 学习</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/07/05/%E5%86%85%E9%83%A8%E7%B1%BB/" rel="next" title="内部类">
+                <i class="fa fa-chevron-left"></i> 内部类
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/07/29/Java-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5/" rel="prev" title="Java 数据库连接">
+                Java 数据库连接 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/fish.jpg"
+                alt="LiWeiAn" />
+            
+              <p class="site-author-name" itemprop="name">LiWeiAn</p>
+              <p class="site-description motion-element" itemprop="description">一步一个脚印</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">LiWeiAn</span>
+
+  
+</div>
+
+<!-- 
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+ -->
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共16.7k字</span>
+</div>
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
