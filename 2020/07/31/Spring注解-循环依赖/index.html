@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="学习," />
 
 
 
@@ -79,13 +79,16 @@
 
 
 
-<meta name="description" content="一步一个脚印">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Bbigcat111 Blog">
-<meta property="og:url" content="http://yoursite.com/archives/2020/07/index.html">
+<meta name="description" content="Spring注解-循环依赖Spring中的注解，是实现IOC的方式之一，使用@Autowired，可以给一个类(有@Component、@Repository、@Service、@Controller中的某个注解，此注解会给这个类在xml中创建同名的类对象)的一个类成员变量注入一个xml中的bean对象，若是此bean不存在，则会在集合中创建一个对象再注入。 下面举个例子，假设有三个接口，每个接口">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring注解-循环依赖">
+<meta property="og:url" content="http://yoursite.com/2020/07/31/Spring%E6%B3%A8%E8%A7%A3-%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96/index.html">
 <meta property="og:site_name" content="Bbigcat111 Blog">
-<meta property="og:description" content="一步一个脚印">
+<meta property="og:description" content="Spring注解-循环依赖Spring中的注解，是实现IOC的方式之一，使用@Autowired，可以给一个类(有@Component、@Repository、@Service、@Controller中的某个注解，此注解会给这个类在xml中创建同名的类对象)的一个类成员变量注入一个xml中的bean对象，若是此bean不存在，则会在集合中创建一个对象再注入。 下面举个例子，假设有三个接口，每个接口">
+<meta property="article:published_time" content="2020-07-31T14:37:59.000Z">
+<meta property="article:modified_time" content="2020-08-01T15:30:38.607Z">
 <meta property="article:author" content="LiWeiAn">
+<meta property="article:tag" content="学习">
 <meta name="twitter:card" content="summary">
 
 
@@ -116,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/2020/07/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/07/31/Spring注解-循环依赖/"/>
 
 
 
 
 
-  <title>归档 | Bbigcat111 Blog</title>
+  <title>Spring注解-循环依赖 | Bbigcat111 Blog</title>
   
 
 
@@ -141,7 +144,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -279,222 +282,173 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/31/Spring%E6%B3%A8%E8%A7%A3-%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LiWeiAn">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/fish.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Bbigcat111 Blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">Spring注解-循环依赖</h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-31T22:37:59+08:00">
+                2020-07-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-        嗯..! 目前共计 10 篇日志。 继续努力。
-      </span>
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Spring/" itemprop="url" rel="index">
+                    <span itemprop="name">Spring</span>
+                  </a>
+                </span>
 
-      
-
-        
-        
-        
-
-        
+                
+                
+              
+            </span>
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2020">2020</h1>
-          </div>
-        
-        
 
-        
+          
+            
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2020/07/31/Spring%E6%B3%A8%E8%A7%A3-%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96/" itemprop="url">
-              
-                <span itemprop="name">Spring注解-循环依赖</span>
-              
-            </a>
-        
-      </h2>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-07-31T22:37:59+08:00"
-              content="2020-07-31" >
-          07-31
-        </time>
-      </div>
+          
 
-    </header>
-  </article>
+          
 
+        </div>
+      </header>
+    
 
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2020/07/29/Java-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5/" itemprop="url">
-              
-                <span itemprop="name">Java 数据库连接</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-07-29T14:13:13+08:00"
-              content="2020-07-29" >
-          07-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2020/07/21/Servlet%E6%80%BB%E7%BB%93/" itemprop="url">
-              
-                <span itemprop="name">Servlet总结</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-07-21T15:33:18+08:00"
-              content="2020-07-21" >
-          07-21
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <h1 id="Spring注解-循环依赖"><a href="#Spring注解-循环依赖" class="headerlink" title="Spring注解-循环依赖"></a>Spring注解-循环依赖</h1><p>Spring中的注解，是实现IOC的方式之一，使用@Autowired，可以给一个类(<strong>有@Component、@Repository、@Service、@Controller中的某个注解，此注解会给这个类在xml中创建同名的类对象</strong>)的一个类成员变量注入一个xml中的bean对象，若是此bean不存在，则会在集合中创建一个对象再注入。</p>
+<p>下面举个例子，假设有三个接口，每个接口都有一个实现类，分别是类A、类B、类C。类A中有成员变量类B，类B中有成员变量类C，类C中有成员变量类C。此时分别给三个类中的依赖类成员变量使用@Autowired，正常会发生什么？</p>
+<p>先是类A的对象被创建，创建完成后，再创建类A中成员变量类B，由于类B中包含成员变量类C，所以创建完类B的对象后会继续创建类C的对象，又由于类C中包含成员变量类A，所以类C对象创建完后又继续创建类A的对象，依次无限循环创建下去。。。</p>
+<p>Spring给出的解决方法是，用一个三级缓存，每一个缓存都是一个HashMap(存放键值对的容器)，其中键存放类对象的id，值存放这个类对象。当要创建类A对象时，发现没有此对象，所以首先创建类A的一个对象，存在第三级缓存中。接着要创建类A对象的成员变量类B，发送没有此类B对象，便创建一个类B对象，存在第三级缓存中。接下来便要创建类B对象中的成员变量类C，发现没有此类C对象，便创建一个类C对象放入第三级缓存中。然后由于类C对象有成员变量类A，需要创建类A对象，但此时搜索发现第三级缓存中有类A对象，于是把第三级缓存中的类A对象移动到第二级缓存，此时认为类C对象的成员变量类A对象已经存在了，于是认为类C对象完全创建成功，然后把类C对象放入第一级缓存中。此时认为类B对象的成员变量类C对象已经存在，于是认为类B对象完成创建成功，把此类B对象放入第一级缓存中。此时又认为类A对象的成员变量类B对象已经存在，于是认为类A对象完成创建成功，然后把类A对象放入第一级缓存，此时循环依赖问题就得以解决。</p>
+<p><strong>注意</strong>：==当使用注解方法注入依赖时，可以解决==，但是==使用构造函数注入时并不能解决==。<strong>原因</strong>：假设类A对象通过构造函数创建，则成员变量类B便是此构造函数的参数，在调用构造函数创建类A对象时，会首先去创建类B对象，只有类B对象创建完成，才会真正完成对类A对象的创建。但是创建类B对象的时候，会调用类B的构造函数，而类C则是此构造函数的参数，所以创建类B对象之前，会去创建类C对象，而创建类C对象，会调用类C的构造函数，而类A则是此构造函数的参数，在创建类C对象之前，会创建类A对象，但由于类C没创建出来，所以类B就没创建出来，也就导致类A也没创建出来，没有类A对象，类C也无法创建，就又陷入了一个无限死循环中。</p>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2020/07/05/%E5%86%85%E9%83%A8%E7%B1%BB/" itemprop="url">
-              
-                <span itemprop="name">内部类</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-07-05T10:28:10+08:00"
-              content="2020-07-05" >
-          07-05
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2020/07/04/lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" itemprop="url">
-              
-                <span itemprop="name">lambada表达式</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-07-04T10:51:36+08:00"
-              content="2020-07-04" >
-          07-04
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag"><i class="fa fa-tag"></i> 学习</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/07/29/Java-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5/" rel="next" title="Java 数据库连接">
+                <i class="fa fa-chevron-left"></i> Java 数据库连接
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -502,6 +456,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -522,8 +480,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -587,6 +554,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring注解-循环依赖"><span class="nav-number">1.</span> <span class="nav-text">Spring注解-循环依赖</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -733,6 +716,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
