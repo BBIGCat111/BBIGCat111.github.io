@@ -119,6 +119,10 @@
 <figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="meta">jdbc.url</span> = <span class="string">jdbc:mysql://localhost:3306/ssm?characterEncoding=utf8</span></span><br><span class="line"><span class="meta">jdbc.driver</span> = <span class="string">com.mysql.jdbc.Driver</span></span><br><span class="line"><span class="meta">jdbc.username</span> = <span class="string">root</span></span><br><span class="line"><span class="meta">jdbc.password</span> = <span class="string">a1210080212</span></span><br><span class="line"><span class="meta">jdbc.initialSize</span> = <span class="string">3</span></span><br><span class="line"><span class="meta">jdbc.maxActive</span> = <span class="string">10</span></span><br></pre></td></tr></table></figure>
 
 <p><strong>其中关系着连接哪个数据库的，是url中的3306/后面的名字</strong>，上面所述连接的数据库是ssm。</p>
+<h2 id="七、"><a href="#七、" class="headerlink" title="七、"></a>七、</h2><p>在使用<strong>@Component、@Repository、@Service、@Controller</strong>等注解时，如果发现@Autowired自动注入失败，就要去找一找applicationContext.xml文件中，对应的包有没有加入注解扫描。</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 扫描Service实现类 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">contex:component-scan</span> <span class="attr">base-package</span>=<span class="string">"com.service"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">contex:component-scan</span> <span class="attr">base-package</span>=<span class="string">"com.pojo"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">mvc:annotation-driven</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这里扫描了service包，同时也扫描了pojo包，这样这两个包中加入了注解的类就会自动创建bean对象放到Spring IOC容器里。</p>
 ]]></content>
       <categories>
         <category>SSM</category>
@@ -160,7 +164,7 @@
 <p>当运行程序时，由于工程一开始带有的index.jsp，弹出了一个页面，url是：<a href="http://localhost:8080/TestSpringMVC_war_exploded/，如下图所示：" target="_blank" rel="noopener">http://localhost:8080/TestSpringMVC_war_exploded/，如下图所示：</a></p>
 <p><img src="/2020/08/04/%E6%90%AD%E5%BB%BASpringMVC%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/E:%5CHexo%5Cblog%5Csource_posts%5C%E6%90%AD%E5%BB%BASpringMVC%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%5C2.jpg" alt></p>
 <p>跟据我的Controller控制器和springmvc2.xml文件，我输入一个新的url：<a href="http://localhost:8080/TestSpringMVC_war_exploded/hello.do，根据上述文件，正常应该会跳入页面：http://localhost:8080/TestSpringMVC_war_exploded/jsp/success.jsp，并显示success.jsp的内容，但是并没有，它出错了，出现了500错误，如下图所示" target="_blank" rel="noopener">http://localhost:8080/TestSpringMVC_war_exploded/hello.do，根据上述文件，正常应该会跳入页面：http://localhost:8080/TestSpringMVC_war_exploded/jsp/success.jsp，并显示success.jsp的内容，但是并没有，它出错了，出现了500错误，如下图所示</a>:</p>
-<p><img src="/2020/08/04/%E6%90%AD%E5%BB%BASpringMVC%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/3.jpg" alt></p>
+<p><img src="/2020/08/04/%E6%90%AD%E5%BB%BASpringMVC%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/%E6%90%AD%E5%BB%BASpringMVC%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%5C3.jpg" alt></p>
 <p>查看其中根本原因如下：</p>
 <p><strong>Line 16 in XML document from class path resource [springmvc2.xml] is invalid</strong></p>
 <p>意思是读取springmvc2.xml读取失败，继续往后看，发现：</p>
@@ -242,7 +246,7 @@
       </tags>
   </entry>
   <entry>
-    <title>Spring注解-循环依赖</title>
+    <title>Spring注解</title>
     <url>/2020/08/01/Spring-%E6%B3%A8%E8%A7%A3/</url>
     <content><![CDATA[<h1 id="Spring-注解"><a href="#Spring-注解" class="headerlink" title="Spring-注解"></a>Spring-注解</h1><p>注解是Spring容器对于Bean的创建和对象属性的<strong>依赖注入</strong>的一种形式，注意使用注解的时候，要在配置xml中开启SpringIOC注解扫描，如下所示：</p>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 开启SpringIOC注解扫描 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"com.yiidian.dao"</span>&gt;</span><span class="tag">&lt;/<span class="name">context:component-scan</span>&gt;</span></span><br></pre></td></tr></table></figure>
