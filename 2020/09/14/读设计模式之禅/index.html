@@ -79,14 +79,14 @@
 
 
 
-<meta name="description" content="测试类的使用首先要使用Test，pom.xml要包含依赖如下所示： 12345678910&lt;dependency&gt;  &lt;groupId&gt;org.springframework&lt;&#x2F;groupId&gt;  &lt;artifactId&gt;spring-test&lt;&#x2F;artifactId&gt;  &lt;version&gt;5.0.2.RELEASE&lt;&#x2F;">
+<meta name="description" content="读设计模式之禅笔记单一职责原则​        接口一定要做到单一职责(即接口只用来做一件事)，类的设计尽量做到只有一个原因引起变化(即只有一个原因才会使这个类的属性发生变化)。 里氏替换原则​        里氏替换原则是继承复用的基石，只有当衍生类可以替换基类，软件单位的功能不受到影响时，即基类随便怎么改动子类都不受此影响，那么基类才能真正被复用。 ​        因为继承带来的侵入性，增加">
 <meta property="og:type" content="article">
-<meta property="og:title" content="测试类的使用">
-<meta property="og:url" content="http://yoursite.com/2020/08/10/%E6%B5%8B%E8%AF%95%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:title" content="读设计模式之禅">
+<meta property="og:url" content="http://yoursite.com/2020/09/14/%E8%AF%BB%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%A6%85/index.html">
 <meta property="og:site_name" content="Bbigcat111 Blog">
-<meta property="og:description" content="测试类的使用首先要使用Test，pom.xml要包含依赖如下所示： 12345678910&lt;dependency&gt;  &lt;groupId&gt;org.springframework&lt;&#x2F;groupId&gt;  &lt;artifactId&gt;spring-test&lt;&#x2F;artifactId&gt;  &lt;version&gt;5.0.2.RELEASE&lt;&#x2F;">
-<meta property="article:published_time" content="2020-08-10T06:23:31.000Z">
-<meta property="article:modified_time" content="2020-08-10T06:35:54.389Z">
+<meta property="og:description" content="读设计模式之禅笔记单一职责原则​        接口一定要做到单一职责(即接口只用来做一件事)，类的设计尽量做到只有一个原因引起变化(即只有一个原因才会使这个类的属性发生变化)。 里氏替换原则​        里氏替换原则是继承复用的基石，只有当衍生类可以替换基类，软件单位的功能不受到影响时，即基类随便怎么改动子类都不受此影响，那么基类才能真正被复用。 ​        因为继承带来的侵入性，增加">
+<meta property="article:published_time" content="2020-09-14T12:23:01.000Z">
+<meta property="article:modified_time" content="2020-09-17T07:27:47.539Z">
 <meta property="article:author" content="LiWeiAn">
 <meta property="article:tag" content="学习">
 <meta name="twitter:card" content="summary">
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/08/10/测试类的使用/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/09/14/读设计模式之禅/"/>
 
 
 
 
 
-  <title>测试类的使用 | Bbigcat111 Blog</title>
+  <title>读设计模式之禅 | Bbigcat111 Blog</title>
   
 
 
@@ -296,7 +296,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/10/%E6%B5%8B%E8%AF%95%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/14/%E8%AF%BB%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%A6%85/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="LiWeiAn">
@@ -313,7 +313,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">测试类的使用</h1>
+          <h1 class="post-title" itemprop="name headline">读设计模式之禅</h1>
         
 
         <div class="post-meta">
@@ -325,8 +325,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-10T14:23:31+08:00">
-                2020-08-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-14T20:23:01+08:00">
+                2020-09-14
               </time>
             
 
@@ -348,8 +348,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/SSM/" itemprop="url" rel="index">
-                    <span itemprop="name">SSM</span>
+                  <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
                   </a>
                 </span>
 
@@ -385,35 +385,32 @@
       
 
       
-        <h1 id="测试类的使用"><a href="#测试类的使用" class="headerlink" title="测试类的使用"></a>测试类的使用</h1><p>首先要使用Test，pom.xml要包含依赖如下所示：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-test<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.0.2.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.12<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+        <h1 id="读设计模式之禅笔记"><a href="#读设计模式之禅笔记" class="headerlink" title="读设计模式之禅笔记"></a>读设计模式之禅笔记</h1><h2 id="单一职责原则"><a href="#单一职责原则" class="headerlink" title="单一职责原则"></a>单一职责原则</h2><p>​        接口一定要做到单一职责<strong>(即接口只用来做一件事)</strong>，类的设计尽量做到只有一个原因引起变化<strong>(即只有一个原因才会使这个类的属性发生变化)。</strong></p>
+<h2 id="里氏替换原则"><a href="#里氏替换原则" class="headerlink" title="里氏替换原则"></a>里氏替换原则</h2><p>​        里氏替换原则是继承复用的基石，只有<strong>当衍生类可以替换基类，软件单位的功能不受到影响</strong>时，即<strong>基类随便怎么改动子类都不受此影响，那么基类才能真正被复用。</strong></p>
+<p>​        因为继承带来的侵入性，增加了耦合性，也降低了代码灵活性，父类修改代码，子类也会受到影响，此时就需要里氏替换原则。</p>
+<p>​        只要父类能出现的地方子类就可以出现，而且替换为子类也不会产生任何错误或异常，但是反过来就不行，子类出现的地方父类不一定可以出现，即向下转型是不安全的。</p>
+<p>​        比如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Father f = <span class="keyword">new</span> Father();</span><br></pre></td></tr></table></figure>
 
-<p>如果junit包不能导入，则需要在File-&gt;Project Structure-&gt;librariies中添加junit-4.12.jar。</p>
-<p>导入jar包之后，有三个注解可以使用：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RunWith</span></span><br><span class="line"><span class="meta">@ContextConfiguration</span></span><br><span class="line"><span class="meta">@Test</span></span><br></pre></td></tr></table></figure>
+<p>​        替换为：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Son f = <span class="keyword">new</span> Son();</span><br></pre></td></tr></table></figure>
 
-<p><strong>@RunWith</strong></p>
-<p>在搭建SSM的时候，假如要单独测试Spring或者测试SpringMVC与Spring是否连接时，需要用到，<strong>放在类名的上面</strong>，用法如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RunWith</span>(SpringJUnit4ClassRunner<span class="class">.<span class="keyword">class</span>)</span></span><br></pre></td></tr></table></figure>
+<p>其中Son是Father的子类。</p>
+<p>​        如果子类不能完整地实现父类的方法，或者父类的某些方法在子类中已经发生了“畸变”，则建议断开父子继承关系，采用<strong>依赖、聚集、组合</strong>等关系代替继承。</p>
+<h3 id="四个注意点"><a href="#四个注意点" class="headerlink" title="四个注意点"></a>四个注意点</h3><p>​        <strong>1、子类必须实现父类的抽象方法，但不得重写（注意是重写，不是重载）父类的非抽象（已实现）方法。</strong></p>
+<p>​                父类的抽象方法，没有在父类中实现，子类可以实现。但是父类的非抽象方法，即已经实现过的方法，子类不得<strong>重写</strong>（前置参数            相同，即方法的参数相同，但方法内容不同）。因为重写之后，子类调用方法时，只会调用子类重写父类之后的方法，而不会调用            父类的方法。</p>
+<p>​        <strong>2、子类中可以增加自己特有的方法。</strong></p>
+<p>​                子类增加自己特有的方法，不会影响父类，属于子类的个性。</p>
+<p>​        <strong>3、子类中方法的前置条件（方法形参）要比父类中被覆写的方法的前置条件更宽松。</strong></p>
+<p>​                这里的前置条件更宽松，指的是子类中的方法的前置条件，与父类中相同方法的前置条件不同，且子类的前置条件类型更宽更            大，这就意味着是对父类方法的<strong>重载</strong>，则父类调用方法的时候的参数，给子类的方法调用，还是会调用父类的方法。这相当于子类            调用从父类中继承下来的父类的方法，因此父类和子类替换，不会影响程序。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">A</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fun</span><span class="params">(HashMap map)</span></span>&#123;</span><br><span class="line">    	System.out.print(<span class="string">"父类方法被执行..."</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">B</span> <span class="keyword">extends</span> <span class="title">A</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fun</span><span class="params">(Map map)</span></span>&#123;</span><br><span class="line">        System.out.print(<span class="string">"子类方法被执行..."</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">demo</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        HashMap&lt;Object, Object&gt; map=<span class="keyword">new</span> HashMap&lt;Object, Object&gt;();</span><br><span class="line">        <span class="comment">//执行父类方法</span></span><br><span class="line">        System.out.print(<span class="string">"执行父类方法"</span>);</span><br><span class="line">        A a = <span class="keyword">new</span> A();</span><br><span class="line">        a.fun(map);</span><br><span class="line">        <span class="comment">//父类存在的地方，可以用子类替代</span></span><br><span class="line">        <span class="comment">//子类B替代父类A</span></span><br><span class="line">        System.out.print(<span class="string">"子类代替父类后运行"</span>);</span><br><span class="line">        B b = <span class="keyword">new</span> B();</span><br><span class="line">       	b.fun(map);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><strong>@ContextConfiguration</strong></p>
-<p>配置Spring的时候，肯定要选择一个Spring的xml配置文件，这时就需要用到这个注解，如下所示：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ContextConfiguration</span>(value = <span class="string">"classpath:applicationContext.xml"</span>)</span><br></pre></td></tr></table></figure>
 
-<p><strong>@Test</strong></p>
-<p>此注解放在方法的上面，使得此类不需要main()函数，就可以直接运行这个方法。</p>
-<p>下面举几个例子：</p>
-<p>1、TestSpring（用来测试Spring）</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.service.UserService;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"><span class="keyword">import</span> org.junit.runner.RunWith;</span><br><span class="line"><span class="keyword">import</span> org.springframework.test.context.ContextConfiguration;</span><br><span class="line"><span class="keyword">import</span> org.springframework.test.context.junit4.SpringJUnit4ClassRunner;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RunWith</span>(SpringJUnit4ClassRunner<span class="class">.<span class="keyword">class</span>)  //加载<span class="title">spring</span>环境</span></span><br><span class="line">@ContextConfiguration("classpath:applicationContext.xml")  //读取Spring配置，创建IOC容器</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestSpring</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> UserService userService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testFindAll</span><span class="params">()</span></span>&#123;</span><br><span class="line">        userService.findAll();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>2、TestMyBatis（用来单独测试MyBatis）</p>
-<p>由于此测试类只测试MyBatis，不加载Spring，所有前两个注解不使用，只使用@Test</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.dao.UserDao;</span><br><span class="line"><span class="keyword">import</span> com.pojo.User;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.io.Resources;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSession;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSessionFactory;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSessionFactoryBuilder;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.annotation.Resource;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStream;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestMyBatis</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testFindAll</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="comment">//1. 加载SqlMapConfig.xml</span></span><br><span class="line">        InputStream in = Resources.getResourceAsStream(<span class="string">"sqlMapConfig.xml"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//2. 创建SqlSessionFactory</span></span><br><span class="line">        SqlSessionFactoryBuilder builder = <span class="keyword">new</span> SqlSessionFactoryBuilder();</span><br><span class="line">        SqlSessionFactory factory = builder.build(in);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//3. 创建SqlSession</span></span><br><span class="line">        SqlSession sqlSession = factory.openSession();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//4. 创建Dao代理对象</span></span><br><span class="line">        UserDao accountDao = sqlSession.getMapper(UserDao<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//5. 执行方法</span></span><br><span class="line">        List&lt;User&gt; list = accountDao.findAll();</span><br><span class="line">        System.out.println(list);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//6. 释放资源</span></span><br><span class="line">        sqlSession.close();</span><br><span class="line">        in.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​        <strong>4、当子类实现父类的抽象方法时，方法的后置条件(即方法的返回值)要比父类更严格。</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">A</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> Map <span class="title">fun</span><span class="params">()</span></span>;            <span class="comment">//父类抽象方法返回值是Map</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">B</span> <span class="keyword">extends</span> <span class="title">A</span></span>&#123;   <span class="comment">//B继承A</span></span><br><span class="line">    <span class="comment">//B实现A的抽象方法,返回值类型比父类方法严格</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> HashMap <span class="title">fun</span><span class="params">()</span></span>&#123;                         <span class="comment">//子类实现父类抽象方法返回值是HashMap,比父类返回值严格</span></span><br><span class="line">        HashMap b = <span class="keyword">new</span> HashMap();</span><br><span class="line">        b.put(<span class="string">"b"</span>, <span class="string">"子类被执行..."</span>);</span><br><span class="line">        <span class="keyword">return</span> b;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">demo</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        A a = <span class="keyword">new</span> B();</span><br><span class="line">        a.fun();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>3、TestSpringMyBatis（测试Spring和MyBatis的整合）</p>
-<p>由于要测试Spirng和MyBatis是否整合成功，所有必须加上前两个注解。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.service.UserService;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"><span class="keyword">import</span> org.junit.runner.RunWith;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.test.context.ContextConfiguration;</span><br><span class="line"><span class="keyword">import</span> org.springframework.test.context.junit4.SpringJUnit4ClassRunner;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RunWith</span>(SpringJUnit4ClassRunner<span class="class">.<span class="keyword">class</span>)</span></span><br><span class="line"><span class="class">@<span class="title">ContextConfiguration</span>(<span class="title">value</span> </span>= <span class="string">"classpath:applicationContext.xml"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestSpringMyBatis</span> </span>&#123;</span><br><span class="line">    <span class="comment">//从容器中获取业务实现</span></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> UserService userService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testFindAll</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(userService.findAll());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<p>​    若在继承时，子类的方法返回值类型范围比父类的方法返回值类型范围大，在子类重写该方法时编译器会报错。</p>
 
       
     </div>
@@ -444,8 +441,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/08/10/%E6%95%B4%E5%90%88SSM/" rel="next" title="整合SSM">
-                <i class="fa fa-chevron-left"></i> 整合SSM
+              <a href="/2020/08/14/%E4%BD%BF%E7%94%A8ajax%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/" rel="next" title="使用ajax遇到的问题">
+                <i class="fa fa-chevron-left"></i> 使用ajax遇到的问题
               </a>
             
           </div>
@@ -453,10 +450,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/08/14/%E4%BD%BF%E7%94%A8ajax%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/" rel="prev" title="使用ajax遇到的问题">
-                使用ajax遇到的问题 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -592,7 +585,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#测试类的使用"><span class="nav-number">1.</span> <span class="nav-text">测试类的使用</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#读设计模式之禅笔记"><span class="nav-number">1.</span> <span class="nav-text">读设计模式之禅笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#单一职责原则"><span class="nav-number">1.1.</span> <span class="nav-text">单一职责原则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#里氏替换原则"><span class="nav-number">1.2.</span> <span class="nav-text">里氏替换原则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#四个注意点"><span class="nav-number">1.2.1.</span> <span class="nav-text">四个注意点</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

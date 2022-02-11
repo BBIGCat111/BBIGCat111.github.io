@@ -89,7 +89,7 @@
 <meta property="og:image" content="http://yoursite.com/2020/08/09/%E6%95%B4%E5%90%88SSM%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/2.jpg">
 <meta property="og:image" content="http://yoursite.com/2020/08/09/%E6%95%B4%E5%90%88SSM%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/3.jpg">
 <meta property="article:published_time" content="2020-08-09T15:48:30.000Z">
-<meta property="article:modified_time" content="2020-08-12T14:06:18.667Z">
+<meta property="article:modified_time" content="2020-09-14T08:25:32.382Z">
 <meta property="article:author" content="LiWeiAn">
 <meta property="article:tag" content="学习">
 <meta name="twitter:card" content="summary">
@@ -482,6 +482,41 @@
 <p>解决方法：</p>
 <p>​        <strong>file-&gt;Project Structure-&gt;Modules-&gt;选择Spring-&gt;右边+号-&gt;添加applicationContext.xml-&gt;应用。</strong></p>
 <p>这时，就可以创建Spring Config文件了，此时我们删除原来的applicationContext.xml，重新创建一个即可。</p>
+<h2 id="十二、IDEA修改包名"><a href="#十二、IDEA修改包名" class="headerlink" title="十二、IDEA修改包名"></a>十二、IDEA修改包名</h2><p>IDEA修改包名后，运行服务器会出错，这是因为target里的project-&gt;WEB-INF-&gt;classes里的包名还没有改变。</p>
+<p><strong>解决方法</strong>:</p>
+<p>​        <strong>删除target文件，然后重新运行服务器即可</strong>，此时会重新生成一个target文件夹。</p>
+<h2 id="十三、更改静态文件后，运行服务器没发生变化"><a href="#十三、更改静态文件后，运行服务器没发生变化" class="headerlink" title="十三、更改静态文件后，运行服务器没发生变化"></a>十三、更改静态文件后，运行服务器没发生变化</h2><p>这是因为，网页上之前<strong>静态页面有缓存</strong>，导致显示没有发生变化。</p>
+<p>两处更改：</p>
+<p>​        1: Run –&gt; Edit Configurations –&gt; On Update option 和 On Frame Deactivation 都选 Update classes and resources</p>
+<p>​        2: Chrome-&gt;F12-&gt;Network-&gt;Disable cache（清除缓存）</p>
+<p>第一处更改的是否需要，还不清楚，但是清除完缓存之后即可正常显示。</p>
+<h2 id="十四、web-xml中的url-pattern问题"><a href="#十四、web-xml中的url-pattern问题" class="headerlink" title="十四、web.xml中的url-pattern问题"></a>十四、web.xml中的url-pattern问题</h2><p>遇到的一个bug：</p>
+<p>web.xml中的<strong><servlet-mapping></servlet-mapping></strong>,第一个<strong><url-pattern></url-pattern></strong>必须是 <strong>/*</strong>，否则，进入不了它的Controller</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>LoginController<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/*<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>CourseController<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/.do<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>UserController<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/.co<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="十五、运行服务器之后，出现初始界面但没反应"><a href="#十五、运行服务器之后，出现初始界面但没反应" class="headerlink" title="十五、运行服务器之后，出现初始界面但没反应"></a>十五、运行服务器之后，出现初始界面但没反应</h2><p>这可能是MySQL数据库没有启动，导致服务器没办法连接到数据库</p>
+<p><strong>解决办法：</strong></p>
+<p>​        窗口键-&gt;服务-&gt;MySql-&gt;右键启动</p>
+<p>打开后，即可成功连接数据库。</p>
+<h2 id="十六、web-xml中的Servlet设置"><a href="#十六、web-xml中的Servlet设置" class="headerlink" title="十六、web.xml中的Servlet设置"></a>十六、web.xml中的Servlet设置</h2><p>不论写多少个Controller，web.xml只需要写一个servlet，即DispatcherServlet，如下所示：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>Controller<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>contextConfigLocation<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>classpath:Controller-mvc.xml<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>Controller<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/*<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="十七、Sesson设置"><a href="#十七、Sesson设置" class="headerlink" title="十七、Sesson设置"></a>十七、Sesson设置</h2><p>只需在Controller接口函数的参数里加上<strong>HttpServletRequest  request</strong>，即可获取sesson的值或者设置sesson的值。</p>
+<p>如下所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/home"</span>)</span><br><span class="line">   <span class="meta">@ResponseBody</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> ServerResponse&lt;User&gt; <span class="title">getUserById</span><span class="params">(HttpServletRequest request)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">       <span class="comment">//获取sesson</span></span><br><span class="line">       String studentId = (String) request.getSession(<span class="keyword">true</span>).getAttribute(<span class="string">"studentId"</span>);</span><br><span class="line"></span><br><span class="line">       User user = userService.getUserById(studentId);</span><br><span class="line"></span><br><span class="line">       <span class="keyword">return</span> ServerResponse.createSuccessResponse(user);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>设置sesson:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">request.getSession(<span class="keyword">true</span>).setAttribute(<span class="string">"studentId"</span>, username);</span><br></pre></td></tr></table></figure>
+
+<p>获取sesson：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String studentId = (String) request.getSession(<span class="keyword">true</span>).getAttribute(<span class="string">"studentId"</span>);</span><br></pre></td></tr></table></figure>
+
 
       
     </div>
@@ -605,7 +640,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -616,7 +651,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -660,7 +695,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#整合SSM时遇到的问题"><span class="nav-number">1.</span> <span class="nav-text">整合SSM时遇到的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、"><span class="nav-number">1.1.</span> <span class="nav-text">一、</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、"><span class="nav-number">1.2.</span> <span class="nav-text">二、</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、"><span class="nav-number">1.3.</span> <span class="nav-text">三、</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、"><span class="nav-number">1.4.</span> <span class="nav-text">四、</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、"><span class="nav-number">1.5.</span> <span class="nav-text">五、</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六、"><span class="nav-number">1.6.</span> <span class="nav-text">六、</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#七、"><span class="nav-number">1.7.</span> <span class="nav-text">七、</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#八"><span class="nav-number">1.8.</span> <span class="nav-text">八</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#九、"><span class="nav-number">1.9.</span> <span class="nav-text">九、</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#十、"><span class="nav-number">1.10.</span> <span class="nav-text">十、</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#十一、"><span class="nav-number">1.11.</span> <span class="nav-text">十一、</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#整合SSM时遇到的问题"><span class="nav-number">1.</span> <span class="nav-text">整合SSM时遇到的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、"><span class="nav-number">1.1.</span> <span class="nav-text">一、</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、"><span class="nav-number">1.2.</span> <span class="nav-text">二、</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、"><span class="nav-number">1.3.</span> <span class="nav-text">三、</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、"><span class="nav-number">1.4.</span> <span class="nav-text">四、</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、"><span class="nav-number">1.5.</span> <span class="nav-text">五、</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六、"><span class="nav-number">1.6.</span> <span class="nav-text">六、</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#七、"><span class="nav-number">1.7.</span> <span class="nav-text">七、</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#八"><span class="nav-number">1.8.</span> <span class="nav-text">八</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#九、"><span class="nav-number">1.9.</span> <span class="nav-text">九、</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#十、"><span class="nav-number">1.10.</span> <span class="nav-text">十、</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#十一、"><span class="nav-number">1.11.</span> <span class="nav-text">十一、</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#十二、IDEA修改包名"><span class="nav-number">1.12.</span> <span class="nav-text">十二、IDEA修改包名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#十三、更改静态文件后，运行服务器没发生变化"><span class="nav-number">1.13.</span> <span class="nav-text">十三、更改静态文件后，运行服务器没发生变化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#十四、web-xml中的url-pattern问题"><span class="nav-number">1.14.</span> <span class="nav-text">十四、web.xml中的url-pattern问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#十五、运行服务器之后，出现初始界面但没反应"><span class="nav-number">1.15.</span> <span class="nav-text">十五、运行服务器之后，出现初始界面但没反应</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#十六、web-xml中的Servlet设置"><span class="nav-number">1.16.</span> <span class="nav-text">十六、web.xml中的Servlet设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#十七、Sesson设置"><span class="nav-number">1.17.</span> <span class="nav-text">十七、Sesson设置</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -680,7 +715,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -705,7 +740,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共27.1k字</span>
+  <span class="post-count">博客全站共29.2k字</span>
 </div>
         
 
