@@ -1,6 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Spring高频面试题及解析1</title>
+    <url>/2022/02/15/Spring%E9%AB%98%E9%A2%91%E9%9D%A2%E8%AF%95%E9%A2%98%E5%8F%8A%E8%A7%A3%E6%9E%901/</url>
+    <content><![CDATA[<h1 id="Spring高频面试题及解析1"><a href="#Spring高频面试题及解析1" class="headerlink" title="Spring高频面试题及解析1"></a>Spring高频面试题及解析1</h1><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 1、Spring是如何创建一个Bean对象的</span></span><br><span class="line"><span class="comment">// 2、什么是单例池？作用是什么？</span></span><br><span class="line"><span class="comment">// 3、Bean对象和普通对象之间的区别是什么？</span></span><br><span class="line"><span class="comment">// 4、依赖注入是怎么实现的？</span></span><br><span class="line"><span class="comment">// 5、@PostConstruct注解是如何工作的？</span></span><br><span class="line"><span class="comment">// 6、Bean的初始化是如何工作的？</span></span><br><span class="line"><span class="comment">// 7、Bean的初始化和实例化的区别是什么？</span></span><br><span class="line"><span class="comment">// 8、推断构造方法是什么意思？</span></span><br><span class="line"><span class="comment">// 9、单例Bean和单例模式之间有什么关系？</span></span><br><span class="line"><span class="comment">// 10、什么是先bytype再byName？</span></span><br><span class="line"><span class="comment">// 11、Spring AOP底层是怎么工作的？</span></span><br><span class="line"><span class="comment">// 12、Spring事务底层是怎么工作的？</span></span><br><span class="line"><span class="comment">// 13、同类方法调用为什么会事务失效？</span></span><br><span class="line"><span class="comment">// 14、@Configuration注解的作用是什么？</span></span><br><span class="line"><span class="comment">// 15、Spring为什么要用三级缓存来解决循环依赖？</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="1、Spring是如何创建一个Bean对象的？"><a href="#1、Spring是如何创建一个Bean对象的？" class="headerlink" title="1、Spring是如何创建一个Bean对象的？"></a>1、Spring是如何创建一个Bean对象的？</h2><p>首先创造一个Spring容器：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">AnnotationConfigApplicationContext applicationContext = <span class="keyword">new</span> AnnotationConfigApplicationContext(AppConfig<span class="class">.<span class="keyword">class</span>)</span>;</span><br></pre></td></tr></table></figure>
+
+<p>如果我们创建一个类的时候，从Spring容器中去get Bean对象，例如下面的UserService类：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">UserService userService = (UserService) applicationContext.getBean(<span class="string">"userService"</span>);</span><br></pre></td></tr></table></figure>
+
+<p>首先UserService类会通过自身的无参构造函数创建一个对象userService，这个对象的所有属性都是空，<strong>如果UserService类中有被<code>@Autowired</code>注解注释的属性（属性也可以是其他类）时，Spring容器中提取的Bean对象会将自己的相对应属性赋值给userService对象</strong>，此时这个userService对象也就是相当于Spring容器中名为“userService”的Bean对象了，也就相当于Spring在外部创建了一个Bean对象。</p>
+<h3 id="内部原理："><a href="#内部原理：" class="headerlink" title="内部原理："></a><strong>内部原理：</strong></h3><p><strong>Spring遍历这个类的内部属性看是否有被@Autowired注解的属性，有的话将Bean对象中的对应属性赋值过去</strong></p>
+<p>如果UserService类单纯地使用无参构造方法创建对象时，比如：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">UserService userService = <span class="keyword">new</span> UserService();</span><br></pre></td></tr></table></figure>
+
+<p>这样创建出来的只是一个普通对象，且这个类对象中的属性值为空。</p>
+<p>Spring创建Bean对象的过程为：</p>
+<p><strong>某个类—&gt;无参构造方法—&gt;对象—&gt;依赖注入—&gt;Bean对象</strong></p>
+<p>这个新创建的对象也就是一个Bean对象，也就是Spring创建了一个Bean对象。</p>
+<h2 id="2、什么是单例池？作用是什么？"><a href="#2、什么是单例池？作用是什么？" class="headerlink" title="2、什么是单例池？作用是什么？"></a>2、什么是单例池？作用是什么？</h2><p>单例池中存放的是单例Bean。下面举个例子：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">UserService userService = (UserService) applicationContext.getBean(<span class="string">"userService"</span>);</span><br><span class="line">UserService userService1 = (UserService) applicationContext.getBean(<span class="string">"userService"</span>);</span><br><span class="line">UserService userService2 = (UserService) applicationContext.getBean(<span class="string">"userService"</span>);</span><br></pre></td></tr></table></figure>
+
+<p><strong>结果就是这三个创建的对象是同一个对象</strong>。因为他们都是从单例池中通过相同的名字得到Bean对象来创建新对象，通过相同的名字提取的Bean对象都是同一个。<strong>Spring通过Map的方式存储单例Bean，以Bean的名称作为key，以Bean对象作为value。即Map&lt;BeanName, Bean 对象&gt;</strong>，这个Map就是单例池。<strong>作用就是每次可以通过名字来创建相同的Bean对象。</strong></p>
+<p><strong>（其实Spring内部有个先byType再byName的机制，先通过相同类查找，再通过名字查找，如果只有一个类相同，但名称不同的Bean对象，也是可以提取的，但是如果有多个类相同，但名称都不相同的Bean对象时，会直接报错）</strong></p>
+<h3 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h3><p><strong>单例池中并不是每个类只存在一个Bean对象，而是相同的类中不同名字的对象会作为一个单例Bean。</strong></p>
+<p>若是提取Bean的时候，Map中没有对应单例Bean，则会先根据无参构造函数创建一个普通对象，然后进行依赖注入，然后放入Map中，变为一个Bean对象。</p>
+<p><strong>某个类—&gt;无参构造方法—&gt;对象—&gt;依赖注入—&gt;放入Map单例池—&gt;Bean对象</strong></p>
+]]></content>
+      <categories>
+        <category>Spring</category>
+      </categories>
+      <tags>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hexo博客部署到GitHub遇到的问题</title>
     <url>/2022/02/12/Hexo%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2%E5%88%B0GitHub%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<h1 id="Hexo博客部署到GitHub遇到的问题"><a href="#Hexo博客部署到GitHub遇到的问题" class="headerlink" title="Hexo博客部署到GitHub遇到的问题"></a>Hexo博客部署到GitHub遇到的问题</h1><p>很久没有使用用Hexo写博客了，今天重新复习了一遍，但是发现使用<code>hexo d</code>将博客部署到github上时，一直部署失败，登陆不上github，在出现下面的登录窗口时，输入了正确的github账号和密码后，还是显示登录失败：</p>
@@ -609,7 +645,7 @@
 <h5 id="doGet-方法"><a href="#doGet-方法" class="headerlink" title="doGet()方法"></a>doGet()方法</h5><p>GET请求来自于一个URL的正常请求，或者来自于一个<strong>未指定method的HTML表单</strong>(即HTML页面中要提交的表格信息)，它由doGet()方法处理：</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> ServletException, IOException</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//Servlet代码</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h5 id="doGet-方法-1"><a href="#doGet-方法-1" class="headerlink" title="doGet()方法"></a>doGet()方法</h5><p>POST请求来自于一个特别指定了METHOD为POST的HTML表单，它由doPost()方法处理。</p>
+<h5 id="doPost-方法"><a href="#doPost-方法" class="headerlink" title="doPost()方法"></a>doPost()方法</h5><p>POST请求来自于一个特别指定了METHOD为POST的HTML表单，它由doPost()方法处理。</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> ServletException, IOException</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//Servlet代码</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h4 id="destroy-方法"><a href="#destroy-方法" class="headerlink" title="destroy()方法"></a>destroy()方法</h4><p>destroy()方法只会被掉用一次，在Servlet生命周期结束时被调用。destroy()方法<strong>可以让Servlet关闭数据库连接、停止后台线程、把Cookie列表或点击计数器写入到磁盘，并 执行其他类似的清理活动。</strong>在调用destroy()方法之后，Servlet对象被标记为垃圾回收，定义如下：</p>
